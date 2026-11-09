@@ -37,7 +37,8 @@ body = once(body, '<script src="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/di
 body = once(body, 'Array.prototype.forEach.call(document.querySelectorAll("#ws > .grid-stack-item"),function(it){ ITEMS[it.getAttribute("gs-id")]=it; });',
             'Array.prototype.forEach.call(document.querySelectorAll("#ws > .grid-stack-item"),function(it){ ITEMS[it.getAttribute("gs-id")]=it; });\n'
             'if(ITEMS.anlz){ parking.appendChild(ITEMS.anlz); delete ITEMS.anlz; }')
-body = once(body, ',["flow",8,55,4,9],["anlz",0,64,12,13]]', ',["flow",8,55,4,9]]')
+body, n = re.subn(r',\["anlz",\d+,\d+,\d+,\d+\]\]', ']', body)
+assert n == 1, n
 body = once(body, '["ANLZ","기사 붙여넣기 분석","p","anlz"],', '')
 
 APP_HEAD = """<!doctype html>

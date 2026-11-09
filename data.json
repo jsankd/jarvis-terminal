@@ -1050,7 +1050,11 @@
   "IMF WEO",
   "House Foreign Affairs Committee",
   "Trading Economics",
-  "국내 숫자: 헤럴드경제·이투데이·동아일보"
+  "국내 숫자: 헤럴드경제·이투데이·동아일보",
+  "Bloomberg 홈페이지 · llms.txt (11/9)",
+  "Semafor Business (Gmail) 11/9",
+  "POLITICO Morning Money (Gmail) 11/9",
+  "Al Jazeera·SCMP·Euronews 홈페이지 (11/9)"
  ],
  "wires": [
   {
@@ -1219,6 +1223,259 @@
    {
     "t": "Bloomberg · Treasuries 11/6",
     "u": "https://ca.finance.yahoo.com/news/us-treasuries-stumble-strong-labor-134733867.html"
+   }
+  ]
+ },
+ "fronts": {
+  "asof": "2026-11-09T22:50:00+09:00",
+  "note": "홈페이지는 맨 위부터 센 순위예요. 뉴스레터는 편집자가 고른 순서예요. 로이터·AP·FT·NYT·닛케이는 이번에 사이트가 막혀 빠졌어요.",
+  "topics": {
+   "nvidia": {
+    "l": "엔비디아 CEO 스파이 의혹",
+    "sid": "nvidia"
+   },
+   "postvote": {
+    "l": "선거 뒤 증시 흔들림",
+    "sid": "midterm"
+   },
+   "iran": {
+    "l": "이란 전쟁·호르무즈",
+    "sid": "iran"
+   },
+   "aicredit": {
+    "l": "AI 돈줄 경색",
+    "m": 1
+   },
+   "bonds": {
+    "l": "빅테크 채권 vs 미 국채",
+    "m": 1
+   },
+   "miller": {
+    "l": "백악관 비서실장 교체",
+    "m": 1
+   },
+   "warren": {
+    "l": "워런 은행위원장 예고",
+    "m": 1
+   },
+   "predmkt": {
+    "l": "예측시장 규제",
+    "m": 1
+   },
+   "fed": {
+    "l": "연준 장악 제동",
+    "m": 1
+   },
+   "vance": {
+    "l": "밴스 2028 고민"
+   },
+   "cnspace": {
+    "l": "중국 달 탐사"
+   },
+   "cnmil": {
+    "l": "중국 핵미사일"
+   },
+   "cnus": {
+    "l": "미·중 신경전"
+   }
+  },
+  "outlets": [
+   {
+    "src": "Bloomberg",
+    "via": "홈페이지",
+    "t": "11/9 22:50",
+    "take": "엔비디아 올인",
+    "items": [
+     {
+      "r": 1,
+      "ko": "엔비디아 CEO 불륜, 중국 스파이 수사로 번져",
+      "k": "nvidia",
+      "u": "https://www.bloomberg.com/news/articles/2026-11-08/nvidia-board-to-probe-spying-case-after-ceo-jensen-huang-admits-infidelity"
+     },
+     {
+      "r": 2,
+      "ko": "급락 뒤 증시, 한 주를 비교적 차분하게 출발",
+      "k": "postvote",
+      "u": "https://www.bloomberg.com/news/articles/2026-11-08/stock-market-today-dow-s-p-live-updates"
+     },
+     {
+      "r": 3,
+      "ko": "황의 불륜 인정, 과거 해명과 어긋나",
+      "k": "nvidia",
+      "u": "https://www.bloomberg.com/news/articles/2026-11-09/nvidia-ceo-s-affair-admission-counters-past-statements-on-ties"
+     },
+     {
+      "r": 6,
+      "ko": "루비오 \"이란 돌파구 없다\", 트럼프는 추가 공습 선 그어",
+      "k": "iran",
+      "u": "https://www.bloomberg.com/news/articles/2026-11-08/trump-says-new-iran-strikes-unlikely-if-talks-progress-cnn-says"
+     }
+    ]
+   },
+   {
+    "src": "Semafor",
+    "via": "뉴스레터",
+    "t": "11/9 22:02",
+    "take": "AI 랠리 끝물론",
+    "items": [
+     {
+      "r": 1,
+      "ko": "'CEO 리스크' 터진 엔비디아, 주가 5% 급락",
+      "k": "nvidia",
+      "u": "https://semafor.com/s/ruq13mli3c"
+     },
+     {
+      "r": 2,
+      "ko": "GPU 대출이 할인 매물로, 데이터센터 돈줄 막혀",
+      "k": "aicredit",
+      "u": "https://semafor.com/s/ruq13mli3c"
+     },
+     {
+      "r": 3,
+      "ko": "빅테크 회사채가 미 국채 수요를 빼앗아",
+      "k": "bonds",
+      "u": "https://semafor.com/s/ruq13mli3c"
+     },
+     {
+      "r": 4,
+      "ko": "밀러 비서실장 기용, 재계 소통 창구 닫혀",
+      "k": "miller",
+      "u": "https://semafor.com/s/ruq13mli3c"
+     },
+     {
+      "r": 5,
+      "ko": "리야드 아람코 타워 피격, 이란 요구 완화설에 유가는 하락",
+      "k": "iran",
+      "u": "https://semafor.com/s/ruq13mli3c"
+     }
+    ]
+   },
+   {
+    "src": "Politico",
+    "via": "뉴스레터",
+    "t": "11/9 22:02",
+    "take": "워런의 칼날",
+    "items": [
+     {
+      "r": 1,
+      "ko": "워런, 상원 은행위 맡아 월가·빅테크·트럼프 일가 코인 겨냥",
+      "k": "warren",
+      "u": "https://www.politico.com/newsletters/morning-money"
+     },
+     {
+      "r": 2,
+      "ko": "엔비디아 이사회 조사, 의회는 칩 수출통제 더 죄기로",
+      "k": "nvidia",
+      "u": "https://www.politico.com/newsletters/morning-money"
+     },
+     {
+      "r": 3,
+      "ko": "민주당, 칼시·폴리마켓 등 예측시장 규제 예고",
+      "k": "predmkt",
+      "u": "https://www.politico.com/newsletters/morning-money"
+     }
+    ]
+   },
+   {
+    "src": "WSJ",
+    "via": "뉴스레터",
+    "t": "11/9 01:59",
+    "take": "선거 후폭풍",
+    "items": [
+     {
+      "r": 1,
+      "ko": "공화당 참패에 밴스, 2028 출마 고민",
+      "k": "vance",
+      "u": "https://www.wsj.com/articles/jd-vance-grapples-with-his-future-after-republican-midterm-losses-fbb54f80"
+     },
+     {
+      "r": 2,
+      "ko": "선거발 AI 매도, 과잉 반응일 수 있어",
+      "k": "postvote",
+      "u": "https://www.wsj.com/finance/stocks/dont-trust-the-markets-knee-jerk-reaction-to-the-midterms-8702b17c"
+     },
+     {
+      "r": 3,
+      "ko": "민주당 약진, 트럼프의 연준 장악에 제동",
+      "k": "fed",
+      "u": "https://www.wsj.com/economy/central-banking/the-democratic-surge-will-cap-trumps-reach-at-the-fed-6b706e11"
+     }
+    ]
+   },
+   {
+    "src": "Al Jazeera",
+    "via": "홈페이지",
+    "t": "11/9 22:50",
+    "take": "이란 전쟁",
+    "items": [
+     {
+      "r": 1,
+      "ko": "트럼프, 중국 정상회담서 시진핑·푸틴과 이란 전쟁 논의 예고",
+      "k": "iran",
+      "u": "https://www.aljazeera.com/news/liveblog/2026/11/9/iran-war-live-trump-says-land-blockade-in-effect-drone-cuts-power-in-iraq"
+     },
+     {
+      "r": 3,
+      "ko": "이란의 '이틀 안 호르무즈 재개' 제안은 무엇인가",
+      "k": "iran",
+      "u": "https://www.aljazeera.com/news/liveblog/2026/11/9/iran-war-live-trump-says-land-blockade-in-effect-drone-cuts-power-in-iraq"
+     },
+     {
+      "r": 7,
+      "ko": "엔비디아, 젠슨 황 불륜 조사 착수",
+      "k": "nvidia",
+      "u": "https://www.aljazeera.com/news/2026/11/8/us-chipmaker-nvidia-investigates-ceo-jensen-huang-over-affair"
+     }
+    ]
+   },
+   {
+    "src": "Euronews",
+    "via": "비즈니스 섹션",
+    "t": "11/9 22:50",
+    "take": "유럽 증시 손익",
+    "items": [
+     {
+      "r": 1,
+      "ko": "선거 매도 뒤 기술주 반등, 엔비디아가 중심",
+      "k": [
+       "postvote",
+       "nvidia"
+      ],
+      "u": "https://www.euronews.com/2026/11/09/tech-stocks-recover-after-midterms-rout-as-nvidia-takes-centre-stage"
+     },
+     {
+      "r": 2,
+      "ko": "트럼프 중간선거 패배, 유럽 증시 승자와 패자",
+      "k": "postvote",
+      "u": "https://www.euronews.com/2026/11/09/trumps-midterm-defeat-europes-biggest-stock-winners-and-losers"
+     }
+    ]
+   },
+   {
+    "src": "SCMP",
+    "via": "홈페이지",
+    "t": "11/9 22:50",
+    "take": "중국 시각",
+    "items": [
+     {
+      "r": 1,
+      "ko": "중국의 '느리고 꾸준한' 달 착륙, 미국보다 안전할까",
+      "k": "cnspace",
+      "u": "https://www.scmp.com/news/china/science/article/3373711/will-chinas-slow-and-steady-moon-landing-plan-be-safer-bet-us"
+     },
+     {
+      "r": 3,
+      "ko": "중국, 신형 핵미사일 배치가 빨라졌나",
+      "k": "cnmil",
+      "u": "https://www.scmp.com/news/china/military/article/3373696/china-getting-faster-integrating-new-nuclear-missiles-its-forces"
+     },
+     {
+      "r": 5,
+      "ko": "추이톈카이 \"미국은 자국 문제를 중국 탓 말라\"",
+      "k": "cnus",
+      "u": "https://www.scmp.com/news/china/politics/article/3373707/us-must-stop-blaming-china-problems-home-former-envoy-cui-tiankai"
+     }
+    ]
    }
   ]
  }
