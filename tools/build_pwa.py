@@ -1,32 +1,44 @@
 #!/usr/bin/env python3
-"""Build index.html (the installable app) from src/artifact.html (the Claude artifact page).
+"""Build index.html (the installable app) from src/launchpad.html (the Claude artifact page).
 
 The artifact page is an HTML fragment (Claude wraps it at publish time). This script
-wraps it into a full document, adds the web-app manifest, icons, a service worker,
-a draggable title strip for window-controls-overlay mode, and hides the ANLZ panel
+wraps it into a full document, adds the web-app manifest, icons and service worker,
+a draggable title strip for window-controls-overlay mode, serves the grid library
+from vendor/ (so the app also opens offline), and takes the ANLZ panel out
 (it needs Claude's in-page runtime, which only exists inside Claude).
+
+src/artifact.html is the older single-page layout. It stays as the source of the
+"JARVIS 터미널" Claude artifact.
 
 Usage: python3 tools/build_pwa.py
 """
 import pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-src = (ROOT / "src" / "artifact.html").read_text(encoding="utf-8")
+src = (ROOT / "src" / "launchpad.html").read_text(encoding="utf-8")
 
-# 1) split fragment into head part (fonts + style) and body part (.wrap + script)
-cut = src.index('<div class="wrap">')
+
+def once(s, a, b):
+    assert s.count(a) == 1, (s.count(a), a[:70])
+    return s.replace(a, b)
+
+
+# 1) split the fragment into head part (fonts + style) and body part (.app + scripts)
+cut = src.index('<div class="app">')
 head, body = src[:cut], src[cut:]
 head = re.sub(r"<title>.*?</title>\s*", "", head, flags=re.S)
 head = re.sub(r'<meta name="claude:viewport-fit-sides"[^>]*>\s*', "", head)
 
-# 2) hide ANLZ (needs window.claude) — keep it in the DOM so its script still runs
-def once(s, a, b):
-    assert s.count(a) == 1, a[:60]
-    return s.replace(a, b)
+# 2) grid library from this site instead of the CDN
+body = once(body, '<script src="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-all.js"></script>',
+            '<script src="vendor/gridstack-all.js"></script>')
 
-body = once(body, '<section class="p s12" id="p-anlz">', '<section class="p s12" id="p-anlz" hidden>')
-body = once(body, '<button class="fk" type="button" data-go="p-anlz">', '<button class="fk" type="button" data-go="p-anlz" hidden>')
-body = once(body, 'placeholder="SEMI · KR · N3 · ANLZ · HELP 입력 후 Enter  ( / 키 )"', 'placeholder="SEMI · KR · N3 · HELP 입력 후 Enter  ( / 키 )"')
+# 3) ANLZ needs window.claude: keep its DOM (its script still runs) but drop it from the workspace
+body = once(body, 'Array.prototype.forEach.call(document.querySelectorAll("#ws > .grid-stack-item"),function(it){ ITEMS[it.getAttribute("gs-id")]=it; });',
+            'Array.prototype.forEach.call(document.querySelectorAll("#ws > .grid-stack-item"),function(it){ ITEMS[it.getAttribute("gs-id")]=it; });\n'
+            'if(ITEMS.anlz){ parking.appendChild(ITEMS.anlz); delete ITEMS.anlz; }')
+body = once(body, ',["flow",8,55,4,9],["anlz",0,64,12,13]]', ',["flow",8,55,4,9]]')
+body = once(body, '["ANLZ","기사 붙여넣기 분석","p","anlz"],', '')
 
 APP_HEAD = """<!doctype html>
 <html lang="ko">
@@ -48,7 +60,9 @@ APP_HEAD = """<!doctype html>
 
 APP_STYLE = """<style>
 /* app shell: safe areas, title strip for window-controls-overlay */
-body{margin:0;padding-top:max(14px, env(safe-area-inset-top, 0px));padding-bottom:max(40px, env(safe-area-inset-bottom, 0px))}
+[hidden]{display:none!important}
+body{margin:0;padding-top:max(10px, env(safe-area-inset-top, 0px))}
+.statusbar{padding-bottom:env(safe-area-inset-bottom, 0px)}
 .wco-bar{display:none}
 @media (display-mode: window-controls-overlay){
   .wco-bar{display:flex;align-items:center;gap:10px;position:fixed;z-index:200;left:env(titlebar-area-x,0);top:env(titlebar-area-y,0);
@@ -56,9 +70,9 @@ body{margin:0;padding-top:max(14px, env(safe-area-inset-top, 0px));padding-botto
     border-bottom:1px solid #1d1d1d;font:600 11px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;color:#5e5e5e;
     -webkit-app-region:drag;app-region:drag;-webkit-user-select:none;user-select:none}
   .wco-bar b{background:#ffa733;color:#000;padding:1px 6px}
-  body{padding-top:calc(env(titlebar-area-height,32px) + 10px)}
+  body{padding-top:calc(env(titlebar-area-height,32px) + 6px)}
+  .grid-stack-item.gmax{top:calc(env(titlebar-area-height,32px) + 6px)!important}
 }
-@media (display-mode: standalone){ .p{scroll-margin-top:12px} }
 </style>
 </head>
 <body>

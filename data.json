@@ -110,22 +110,26 @@
     {
      "src": "WSJ",
      "text": "시장 반응 자체를 문제 삼습니다. 칼럼니스트 매킨토시는 선거 뒤 매도가 지나치다고 봤습니다. 새 주지사의 건설 중단 공약은 협상 카드이거나, 데이터센터가 다른 주로 옮겨갈 수 있다고 했습니다. 거시 경제 영향은 앞세우지 않았습니다(뉴스레터·RSS 기준).",
-     "u": "https://www.wsj.com/finance/stocks/dont-trust-the-markets-knee-jerk-reaction-to-the-midterms-8702b17c"
+     "u": "https://www.wsj.com/finance/stocks/dont-trust-the-markets-knee-jerk-reaction-to-the-midterms-8702b17c",
+     "tag": "과잉 반응"
     },
     {
      "src": "Bloomberg",
      "text": "역발상 프레임입니다. 규제가 과열된 투자를 늦춰 오히려 'AI 투자 붕괴' 확률을 낮출 수 있다고 봤습니다. 노무라는 '자연스러운 브레이크', 에버코어는 '주 단위 중단은 1년 안팎'이라고 했습니다. 주가 급락은 거의 다루지 않고 2028년까지의 투자 사이클에 집중했습니다.",
-     "u": "https://uk.finance.yahoo.com/news/us-data-center-backlash-may-174847887.html"
+     "u": "https://uk.finance.yahoo.com/news/us-data-center-backlash-may-174847887.html",
+     "tag": "과열 방지턱"
     },
     {
      "src": "Reuters",
      "text": "중앙은행 시각으로 옮겨 갔습니다. IMF 게오르기에바 총재는 AI발 성장이 꺾이면 중앙은행이 금리 판단에 반영해야 한다고 했습니다. AI 붐이 중동 유가 충격을 상쇄하는 중이라는 점도 덧붙였습니다. 민주당이 1월에 AI·데이터센터 법안을 낼 계획이라고 전했습니다.",
-     "u": "https://finance.yahoo.com/technology/ai/articles/imfs-georgieva-says-slowdown-ai-235217190.html"
+     "u": "https://finance.yahoo.com/technology/ai/articles/imfs-georgieva-says-slowdown-ai-235217190.html",
+     "tag": "중앙은행 시각"
     },
     {
      "src": "AP",
      "text": "원인을 유권자 정서에서 찾습니다. 정당과 관계없이 AI를 경계하고, 데이터센터 때문에 오른 전기요금을 싫어한다고 설명했습니다. 특히 텍사스를 짚었습니다. 시장보다 생활비 정치로 읽은 셈입니다.",
-     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/"
+     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/",
+     "tag": "생활비 정치"
     }
    ],
    "judge": "네 매체 모두 '정책 비용이 생겼다'는 데는 같습니다. 갈리는 건 그 비용을 어디서 재느냐입니다. WSJ는 주가(투자자 독자), 블룸버그는 투자 사이클(트레이더·이코노미스트), 로이터는 거시·통화정책(정책 담당자), AP는 생활비(일반 독자)를 봅니다. 블룸버그 시나리오처럼 속도만 늦춰지면 HBM 수요는 '높이'보다 '기간'이 바뀌어 한국 반도체에 꼭 악재만은 아닙니다. IB 관점에서는 데이터센터 프로젝트 파이낸싱과 인프라 딜 일정이 밀릴 수 있습니다.",
@@ -214,22 +218,26 @@
     {
      "src": "Reuters",
      "text": "국가안보 프레임입니다. 공화당 위원장들의 서한을 앞세워 중국의 미국 기술 접근 문제로 다뤘습니다. 9일에는 한국 정부가 GPU 공급에 차질이 없다고 답한 내용을 따로 전했습니다. 고객 국가의 불안까지 짚은 건 로이터뿐입니다.",
-     "u": "https://ca.finance.yahoo.com/news/key-republicans-seek-briefing-nvidia-184123283.html"
+     "u": "https://ca.finance.yahoo.com/news/key-republicans-seek-briefing-nvidia-184123283.html",
+     "tag": "국가안보"
     },
     {
      "src": "Bloomberg",
      "text": "NYT 보도를 받아 정보당국 판단을 자세히 옮겼습니다. 메가스피드 임원이 중국 국가안전부를 위해 일했고, 첨단 칩의 대중 판매를 설득하려 했을 수 있다는 내용입니다. 수출통제 각도가 강하고, 선거 뒤 의회 감시가 급해졌다고 봤습니다.",
-     "u": "https://finance.yahoo.com/technology/ai/articles/us-believes-woman-close-nvidia-013053857.html"
+     "u": "https://finance.yahoo.com/technology/ai/articles/us-believes-woman-close-nvidia-013053857.html",
+     "tag": "수출통제"
     },
     {
      "src": "AP",
      "text": "시장 반응에 초점을 둡니다. 아시아 증시가 이 악재를 대체로 넘기고 반등했다고 전했습니다. 다만 분석가 이네스의 말을 빌려 개인 스캔들을 넘어서는 문제라고 덧붙였습니다.",
-     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/"
+     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/",
+     "tag": "시장 무덤덤"
     },
     {
      "src": "FT",
      "text": "헤드라인 기준입니다. 의원들이 젠슨 황의 증언을 요구한다고 보도했습니다. 엔비디아는 FT에 고객사 경영진과의 만남은 일상 업무라고 답했습니다(Kagi 묶음 기준).",
-     "u": "https://www.ft.com/content/a55a2a22-4479-4f93-a445-6147a5c6d790"
+     "u": "https://www.ft.com/content/a55a2a22-4479-4f93-a445-6147a5c6d790",
+     "tag": "의회 증언"
     }
    ],
    "judge": "네 매체 모두 아직 '의혹 단계'라는 점은 같습니다. 로이터·블룸버그는 정책 리스크(안보·수출통제)로, AP는 시장 리스크로 읽습니다. 갈리는 이유는 보는 시계가 달라서입니다. 정책 기사는 11/18 의회 일정을, 시장 기사는 월요일 아시아 장을 봅니다. 핵심 인물 리스크가 커지면 엔비디아 고객 비중이 큰 SK하이닉스 변동성도 커질 수 있습니다. IB 관점에서는 지배구조 조사가 대형 기술주 밸류에이션 할인 요인이 되는 사례입니다.",
@@ -315,17 +323,20 @@
     {
      "src": "AP",
      "text": "'블로아웃'이라는 표현을 앞세웠지만 '적게 뽑고 적게 자르는' 시장이라고 봤습니다. 이민 단속과 은퇴로 손익분기 고용이 월 5천 명 수준까지 내려갔다는 점을 덧붙였습니다. 결론은 12월 인상 가능성 상승입니다.",
-     "u": "https://www.bnnbloomberg.ca/business/international/2026/11/06/us-employers-added-a-surprising-165000-jobs-in-october-unemployment-rate-dipped-to-41/"
+     "u": "https://www.bnnbloomberg.ca/business/international/2026/11/06/us-employers-added-a-surprising-165000-jobs-in-october-unemployment-rate-dipped-to-41/",
+     "tag": "적게 뽑는 강세"
     },
     {
      "src": "Reuters",
      "text": "연준보다 노동 공급 구조를 봤습니다. 가계조사 고용 증가는 모두 외국 태생 근로자 몫이라고 짚었습니다. 실업 기간은 10년 만에 가장 길고, AI 노출 업종(정보·금융)은 추세적으로 줄고 있다고 했습니다.",
-     "u": "https://finance.yahoo.com/news/four-things-note-fridays-us-192147108.html"
+     "u": "https://finance.yahoo.com/news/four-things-note-fridays-us-192147108.html",
+     "tag": "노동 공급"
     },
     {
      "src": "Bloomberg",
      "text": "채권 가격으로 읽었습니다. 2년물 급등과 12월 인상 확률 70%를 앞세웠습니다. 고용의 질이나 AI 이야기는 빼고 금리 경로만 다뤘습니다.",
-     "u": "https://ca.finance.yahoo.com/news/us-treasuries-stumble-strong-labor-134733867.html"
+     "u": "https://ca.finance.yahoo.com/news/us-treasuries-stumble-strong-labor-134733867.html",
+     "tag": "금리 경로"
     }
    ],
    "judge": "세 매체 모두 '예상보다 강하다'는 데는 같습니다. 갈리는 건 무엇을 재느냐입니다. AP는 일반 독자에게 고용의 질을, 로이터는 이민·AI가 바꾼 노동 공급을, 블룸버그는 채권 트레이더에게 금리 경로를 보여줍니다. 그래서 AP·블룸버그는 '12월 인상'으로, 로이터는 '구조 변화'로 결론이 기웁니다. 미 금리가 오르면 한미 10년물 금리차(−102bp)가 커지고 원화와 외국인 수급에 부담이 됩니다.",
@@ -409,12 +420,14 @@
     {
      "src": "AP",
      "text": "금요일 월가 AI주 회복이 아시아로 번졌다고 봤습니다. 강한 미국 고용이 데이터센터 둔화를 흡수할 수 있다는 해석을 같이 실었습니다. 한국은 지난주 약 6% 급락 뒤의 반등으로 다뤘습니다.",
-     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/"
+     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/",
+     "tag": "AI주 회복"
     },
     {
      "src": "AFP",
      "text": "원인은 같게 보지만 더 회의적입니다. AI 지출이 언제 이익이 되느냐는 의문을 계속 짚었습니다. 밸류에이션이 싸졌다는 NAB 분석과, 엔비디아 사태가 대중 칩 판매 감시를 키울 수 있다는 아이브스의 경고를 함께 실었습니다.",
-     "u": "https://finance.yahoo.com/technology/articles/tech-firms-claw-back-losses-025428116.html"
+     "u": "https://finance.yahoo.com/technology/articles/tech-firms-claw-back-losses-025428116.html",
+     "tag": "수익성 회의"
     }
    ],
    "judge": "AP·AFP 모두 기술적 반등으로 봅니다. AFP가 지속성에 더 의문을 둡니다. 한국은 대만보다 반등 폭이 작고 외국인 매도가 이어집니다. 지난주 외신이 말한 '코스피 증폭 구조'가 아직 풀리지 않았다는 뜻입니다.",
@@ -501,12 +514,14 @@
     {
      "src": "WSJ",
      "text": "헤드라인 기준입니다. 사우디 당국이 리야드의 상징 빌딩 피해를 확인했다고 전했습니다. 별도로 백악관 참모들이 종전과 추가 공습으로 갈렸다고 보도했습니다. 현장 확전과 결정 지연을 함께 봅니다.",
-     "u": "https://www.wsj.com/world/middle-east/trumps-clashing-advisers-press-him-to-make-iran-war-decision-758c1e55"
+     "u": "https://www.wsj.com/world/middle-east/trumps-clashing-advisers-press-him-to-make-iran-war-decision-758c1e55",
+     "tag": "확전·결정 지연"
     },
     {
      "src": "AP",
      "text": "시장 쪽은 차분하다고 봤습니다. 유가 움직임을 0.2% 안팎으로 짧게 전했고, 시장 관심은 AI주와 미국 고용에 있다고 정리했습니다.",
-     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/"
+     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/",
+     "tag": "시장 차분"
     }
    ],
    "judge": "WSJ는 확전 위험을, AP는 시장의 무덤덤함을 봅니다. 유가가 100달러 아래에 머문다는 건 시장이 정치적 종전 압력에 더 무게를 둔다는 뜻입니다. 원유를 거의 다 수입하는 한국에는 100달러가 무역수지와 원화의 분기점입니다.",
@@ -593,12 +608,14 @@
     {
      "src": "Bloomberg",
      "text": "통화정책으로 읽습니다. 크노트 인터뷰를 앞세워, ECB가 매파 기조를 지켜야 하고 2차 효과로 근원물가가 오를 수 있다고 전했습니다. 누가 되든 긴축 성향이 이어진다는 프레임입니다.",
-     "u": "https://uk.finance.yahoo.com/news/knot-says-ecb-stick-hawkish-135635467.html"
+     "u": "https://uk.finance.yahoo.com/news/knot-says-ecb-stick-hawkish-135635467.html",
+     "tag": "매파 지속"
     },
     {
      "src": "Euronews",
      "text": "정치 거래로 읽습니다. 라가르드의 조기 퇴임을 2027년 4월 프랑스 대선과 연결했습니다. 예측시장에서 데코스가 앞선다고 전했지만, 후보의 정책 성향은 다루지 않았습니다.",
-     "u": "https://finance.yahoo.com/economy/policy/articles/replace-lagarde-eurozone-picks-nominees-101013179.html"
+     "u": "https://finance.yahoo.com/economy/policy/articles/replace-lagarde-eurozone-picks-nominees-101013179.html",
+     "tag": "정치 거래"
     }
    ],
    "judge": "블룸버그는 금리, 유로뉴스는 국가 간 거래를 봅니다. 독자층 차이입니다. 금리 시장에는 블룸버그 시각이 더 직접적입니다. 유럽 금리가 높게 굳으면 글로벌 장기금리도 잘 내려오지 않습니다.",
@@ -686,17 +703,20 @@
     {
      "src": "FT",
      "text": "단독 보도입니다(인베스팅닷컴 재인용 기준). 중국 국가발전개혁위원회가 막았다고 전했습니다. 중국이 ABB 로봇 사업의 최대 시장이라는 점과, 소프트뱅크가 재신청을 검토한다는 점을 짚었습니다.",
-     "u": "https://finance.yahoo.com/technology/ai/articles/softbank-5-4-bln-takeover-034551741.html"
+     "u": "https://finance.yahoo.com/technology/ai/articles/softbank-5-4-bln-takeover-034551741.html",
+     "tag": "NDRC 단독"
     },
     {
      "src": "Reuters",
      "text": "원인에 초점을 둡니다(Verdict 재인용 기준). 민감한 로봇 데이터가 미국으로 넘어갈 수 있다는 우려를 들었습니다. 오픈AI 등 서방 기업과의 관계, 중일 긴장도 요인일 수 있다고 했습니다.",
-     "u": "https://finance.yahoo.com/news/regulators-bars-softbank-acquisition-abb-111606729.html"
+     "u": "https://finance.yahoo.com/news/regulators-bars-softbank-acquisition-abb-111606729.html",
+     "tag": "데이터 안보"
     },
     {
      "src": "AP",
      "text": "주가와 후속 대응만 짧게 다뤘습니다. 소프트뱅크가 딜을 살리려 한다고 전했습니다.",
-     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/"
+     "u": "https://www.news4jax.com/business/2026/11/09/asian-markets-bounce-back-after-a-recovery-for-ai-stocks-on-wall-street/",
+     "tag": "주가·대응"
     }
    ],
    "judge": "외신은 정치·안보가 크로스보더 M&A의 마지막 관문이 됐다는 데 같습니다. FT·로이터는 '왜 막았나'를, AP는 시장 반응을 봅니다. IB 공부 포인트는 규제 승인이 클로징 조건이라는 점입니다. 매출에서 중국 비중이 큰 타깃은 중국 심사가 사실상 거부권이 됩니다. 중국 사업 분리(카브아웃) 같은 구조 변경이 대안이 될 수 있습니다.",
@@ -781,17 +801,20 @@
     {
      "src": "Bloomberg",
      "text": "영업이익 감소와 자사주 확대를 나란히 세웠습니다. 해석 없이 숫자 중심으로 썼습니다.",
-     "u": "https://finance.yahoo.com/markets/stocks/articles/berkshire-hathaway-operating-earnings-fall-130121017.html"
+     "u": "https://finance.yahoo.com/markets/stocks/articles/berkshire-hathaway-operating-earnings-fall-130121017.html",
+     "tag": "숫자 나열"
     },
     {
      "src": "WSJ",
      "text": "헤드라인 기준입니다. 순이익 28% 감소를 앞세워 실적 약화로 읽었습니다.",
-     "u": "https://www.wsj.com/business/earnings/berkshire-hathaway-brkb-q3-earnings-report-2026-stock-02843721"
+     "u": "https://www.wsj.com/business/earnings/berkshire-hathaway-brkb-q3-earnings-report-2026-stock-02843721",
+     "tag": "실적 약화"
     },
     {
      "src": "FT",
      "text": "Kagi 묶음의 관점 기준입니다. AI 매매가 무너지면 버크셔가 지분을 사들일 수 있다는 분석을 실어, 하락장의 매수자로 봤습니다.",
-     "u": "https://www.ft.com/content/1f153350-2377-4e48-a073-0539376eab4c"
+     "u": "https://www.ft.com/content/1f153350-2377-4e48-a073-0539376eab4c",
+     "tag": "하락장 매수자"
     }
    ],
    "judge": "블룸버그·WSJ는 실적을, FT는 쌓인 현금의 쓰임을 봅니다. 에이블 체제에서 자본 배분이 바뀌는 신호입니다. IB 관점에서는 자사주와 M&A 중 무엇을 고르느냐가 핵심입니다. 현금이 쌓일수록 대형 인수 기대도 커집니다.",
