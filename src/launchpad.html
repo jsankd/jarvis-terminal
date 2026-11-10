@@ -864,7 +864,7 @@ td.hl .fchip{margin-right:8px}
 </style>
 
 <div class="app">
-<div class="boot ob mg" id="boot"><canvas class="obcv"></canvas><div class="bgate"><div class="gr"><i class="gt"></i><b>INITIALIZE</b></div><span>클릭하면 시작 · 소리와 함께</span><em></em></div><div class="obhud tl"><div class="obh"><b>JRVS</b><span>ORBITAL UPLINK</span></div><div class="obk"><i>ALT</i><em data-k="alt">35,786 KM</em></div><div class="obk"><i>VEL</i><em data-k="vel">3.07 KM/S</em></div><div class="obk"><i>CAM</i><em data-k="cam">—</em></div><div class="obk"><i>SUN</i><em data-k="sun">—</em></div></div><div class="obhud tr"><div data-k="clk">UTC --:--:-- · KST --:--:--</div><div data-k="sid">SESSION ····-····</div><div data-k="dsz">DATA ··· KB</div></div><div class="obup"><div class="obuh">UPLINK<span data-k="upn">0</span></div><div class="obul"></div></div><div class="obtitle"><div class="obt1">JARVIS</div><div class="obt2"></div></div><div class="obph"><span data-k="ph">STANDBY</span><div class="obbar"><i></i></div><b data-k="pc">0%</b></div><div class="obskip">ESC 키로 건너뛰어요</div><div class="ic icin"><canvas class="iccv"></canvas><div class="icban top"><i></i><span>RESTRICTED · JRVS INTELLIGENCE · MARKETS COMPARTMENT · EYES ONLY</span><b data-k="clk">--:--:--Z</b></div><div class="icban bot"><span data-k="sid">SESSION ····-····</span><span class="icmid">HANDLE VIA JRVS CHANNELS ONLY</span><b data-k="pc">0%</b></div><div class="icterm"><div class="ictl"></div></div><div class="icsig"><canvas class="icsc"></canvas><div class="icsl" data-k="sigl">VERIFYING TERMINAL SIGNATURE</div><div class="icclr" data-k="clr">CLEARANCE GRANTED<small>LEVEL 4 · MARKETS / GEO</small></div></div><span data-k="opsid" hidden></span><canvas class="icmap" hidden></canvas></div></div>
+<div class="boot ob mg" id="boot"><canvas class="obcv"></canvas><div class="bgate"><div class="gr"><i class="gt"></i><b>INITIALIZE</b></div><span>클릭하면 시작 · 소리와 함께</span><em></em></div><div class="obhud tl"><div class="obh"><b>JRVS</b><span>ORBITAL UPLINK</span></div><div class="obk"><i>ALT</i><em data-k="alt">35,786 KM</em></div><div class="obk"><i>VEL</i><em data-k="vel">3.07 KM/S</em></div><div class="obk"><i>CAM</i><em data-k="cam">—</em></div><div class="obk"><i>SUN</i><em data-k="sun">—</em></div></div><div class="obhud tr"><div data-k="clk">UTC --:--:-- · KST --:--:--</div><div data-k="sid">SESSION ····-····</div><div data-k="dsz">DATA ··· KB</div></div><div class="obup"><div class="obuh">UPLINK<span data-k="upn">0</span></div><div class="obul"></div></div><div class="obtitle"><div class="obt1">JARVIS</div><div class="obt2"></div></div><div class="obph"><span data-k="ph">STANDBY</span><div class="obbar"><i></i></div><b data-k="pc">0%</b></div><div class="obskip"></div><div class="ic icin"><canvas class="iccv"></canvas><div class="icban top"><i></i><span>RESTRICTED · JRVS INTELLIGENCE · MARKETS COMPARTMENT · EYES ONLY</span><b data-k="clk">--:--:--Z</b></div><div class="icban bot"><span data-k="sid">SESSION ····-····</span><span class="icmid">HANDLE VIA JRVS CHANNELS ONLY</span><b data-k="pc">0%</b></div><div class="icterm"><div class="ictl"></div></div><div class="icsig"><canvas class="icsc"></canvas><div class="icsl" data-k="sigl">VERIFYING TERMINAL SIGNATURE</div><div class="icclr" data-k="clr">CLEARANCE GRANTED<small>LEVEL 4 · MARKETS / GEO</small></div></div><span data-k="opsid" hidden></span><canvas class="icmap" hidden></canvas></div></div>
   <div class="topbar">
     <span class="logo">JRVS</span>
     <form class="cmdline" id="cmdform" autocomplete="off" role="search">
@@ -2179,7 +2179,7 @@ document.addEventListener("click",function(e){ if(!glOn()) return; var b=e.targe
 function fxCmd(c){ if(c==="globe"){ focusPanel("map"); setGlobe(!GL.on); } else if(c==="night"){ focusPanel("map"); setNight(!NIGHT.on); } else if(c==="boot"){ mgMake(); mgStart(true); } else if(c==="bootp"){ coMake(); coStart(true); } else if(c==="bootc"){ icMake(); icStart(true); } else if(c==="bootb"){ obMake(); obStart(true); } else if(c==="boota"){ bootMake(); bootStart(true); } }
 
 /* ===================== BOOT: a source network lights up around the loading log ===================== */
-var BOOT_HTML='<canvas class="bcv"></canvas><div class="bgate"><div class="gr"><i class="gt"></i><b>INITIALIZE</b></div><span>클릭하면 시작 · 소리와 함께</span><em></em></div><div class="bw"><div class="bh"><b>JRVS</b><span>MARKET INTELLIGENCE TERMINAL</span><i class="bsid">SESSION ····-····</i></div><div class="bmeta"><span class="bclk">UTC --:--:-- · KST --:--:--</span><span class="bsz">DATA ··· KB · CRC ········</span></div><div class="bls"></div><div class="bct"><span>SIGNALS<b data-k="sig">0</b></span><span>OUTLETS<b data-k="out">0</b></span><span>STORIES<b data-k="sto">0</b></span><span>COUNTRIES<b data-k="cty">0</b></span></div><div class="bpg"><div class="bbar"><i></i></div><b class="bpc">0%</b></div><div class="bf"><span class="bg ph">INITIALIZING</span><span>ESC 키로 건너뛰어요</span></div></div>';
+var BOOT_HTML='<canvas class="bcv"></canvas><div class="bgate"><div class="gr"><i class="gt"></i><b>INITIALIZE</b></div><span>클릭하면 시작 · 소리와 함께</span><em></em></div><div class="bw"><div class="bh"><b>JRVS</b><span>MARKET INTELLIGENCE TERMINAL</span><i class="bsid">SESSION ····-····</i></div><div class="bmeta"><span class="bclk">UTC --:--:-- · KST --:--:--</span><span class="bsz">DATA ··· KB · CRC ········</span></div><div class="bls"></div><div class="bct"><span>SIGNALS<b data-k="sig">0</b></span><span>OUTLETS<b data-k="out">0</b></span><span>STORIES<b data-k="sto">0</b></span><span>COUNTRIES<b data-k="cty">0</b></span></div><div class="bpg"><div class="bbar"><i></i></div><b class="bpc">0%</b></div><div class="bf"><span class="bg ph">INITIALIZING</span><span></span></div></div>';
 var bootTimers=[], booting=false, BT=null;
 function bootMake(){ var o=document.getElementById("boot"); if(o) o.remove(); var b=el("div","boot"); b.id="boot"; b.innerHTML=BOOT_HTML; document.body.appendChild(b); return b; }
 function bootClear(){ bootTimers.forEach(function(x){ clearTimeout(x); clearInterval(x); }); bootTimers=[]; if(BT&&BT.raf) cancelAnimationFrame(BT.raf); }
@@ -2473,9 +2473,9 @@ function decodeAll(){
       if(it.n.isConnected) it.n.nodeValue=s; });
     if(live) requestAnimationFrame(step); })(t0);
 }
-function bootSkip(e){ if(!booting) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(BT&&BT.gate) bEngage(true); else if(e.key==="Escape") bootEnd(); }
+function bootSkip(e){ if(!booting) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(BT&&BT.gate) bEngage(true); }
 document.addEventListener("keydown",bootSkip,true);
-document.addEventListener("pointerdown",function(e){ if(!booting||!(e.target.closest&&e.target.closest("#boot"))) return; if(BT&&BT.gate) bEngage(true); else if(e.key==="Escape") bootEnd(); },true);
+document.addEventListener("pointerdown",function(e){ if(!booting||!(e.target.closest&&e.target.closest("#boot"))) return; if(BT&&BT.gate) bEngage(true); },true);
 
 /* ===================== BOOT B: orbital approach → position lock → uplink → title → the globe unfolds into the map ===================== */
 var OB_HTML='<canvas class="obcv"></canvas>'+
@@ -2485,7 +2485,7 @@ var OB_HTML='<canvas class="obcv"></canvas>'+
  '<div class="obup"><div class="obuh">UPLINK<span data-k="upn">0</span></div><div class="obul"></div></div>'+
  '<div class="obtitle"><div class="obt1">JARVIS</div><div class="obt2"></div></div>'+
  '<div class="obph"><span data-k="ph">STANDBY</span><div class="obbar"><i></i></div><b data-k="pc">0%</b></div>'+
- '<div class="obskip">ESC 키로 건너뛰어요</div>';
+ '<div class="obskip"></div>';
 var OB=null, obRun=false, obTimers=[];
 var SEOUL=[126.98,37.57];
 function obMake(){ var o=document.getElementById("boot"); if(o) o.remove(); var b=el("div","boot ob"); b.id="boot"; b.innerHTML=OB_HTML; document.body.appendChild(b); return b; }
@@ -2699,9 +2699,9 @@ function obEnd(skip){
   if(skip){ if(OB.drone) OB.drone.stop(); sWhoosh(); box.classList.add("off","hand"); assemble(); }
   setTimeout(function(){ if(OB&&OB.raf) cancelAnimationFrame(OB.raf); window.removeEventListener("resize",obResize); box.remove(); OB=null; obRun=false; setTimeout(decodeAll,skip?380:120); },skip?420:60);
 }
-function obSkip(e){ if(!obRun) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(OB&&OB.gate) obEngage(true); else if(e.key==="Escape"&&OB&&OB.phase!=="unfold") obEnd(true); }
+function obSkip(e){ if(!obRun) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(OB&&OB.gate) obEngage(true); }
 document.addEventListener("keydown",obSkip,true);
-document.addEventListener("pointerdown",function(e){ if(!obRun||!(e.target.closest&&e.target.closest("#boot"))) return; if(OB&&OB.gate) obEngage(true); else if(e.key==="Escape"&&OB&&OB.phase!=="unfold") obEnd(true); },true);
+document.addEventListener("pointerdown",function(e){ if(!obRun||!(e.target.closest&&e.target.closest("#boot"))) return; if(OB&&OB.gate) obEngage(true); },true);
 
 /* ===================== BOOT C: classified briefing (fictional agency styling) ===================== */
 var IC_HTML='<canvas class="iccv"></canvas>'+
@@ -2714,7 +2714,7 @@ var IC_HTML='<canvas class="iccv"></canvas>'+
  '<div class="icmain"><div class="icgrid"></div><div class="icside"><div class="ich">INTERCEPTS<span data-k="icn">0</span></div><div class="icint"></div>'+
  '<div class="ich">SITUATION<span data-k="lvl">—</span></div><div class="icthreat"><div class="icseg"><i></i><i></i><i></i><i></i><i></i></div><div class="icthr" data-k="thr"></div><canvas class="icmap"></canvas></div></div></div>'+
  '<div class="icstamp" data-k="final"><b>BRIEFING READY</b><span>EYES ONLY · JRVS INTELLIGENCE</span></div>'+
- '<div class="icskip">ESC 키로 건너뛰어요</div>';
+ '<div class="icskip"></div>';
 var IC=null, icRun=false, icTimers=[];
 function icMake(){ var o=document.getElementById("boot"); if(o) o.remove(); var b=el("div","boot ic"); b.id="boot"; b.innerHTML=IC_HTML; document.body.appendChild(b); return b; }
 function icK(k){ return IC.box.querySelector('[data-k="'+k+'"]'); }
@@ -2869,9 +2869,9 @@ function icEnd(skip){
   if(skip){ if(IC.drone) IC.drone.stop(); sWhoosh(); box.classList.add("hand"); assemble(); }
   setTimeout(function(){ if(IC&&IC.raf) cancelAnimationFrame(IC.raf); window.removeEventListener("resize",icResize); box.remove(); IC=null; icRun=false; setTimeout(decodeAll,skip?300:100); },skip?520:120);
 }
-function icSkip(e){ if(!icRun) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(IC&&IC.gate) icEngage(true); else if(e.key==="Escape"&&IC&&!IC.handing) icEnd(true); }
+function icSkip(e){ if(!icRun) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(IC&&IC.gate) icEngage(true); }
 document.addEventListener("keydown",icSkip,true);
-document.addEventListener("pointerdown",function(e){ if(!icRun||!(e.target.closest&&e.target.closest("#boot"))) return; if(IC&&IC.gate) icEngage(true); else if(e.key==="Escape"&&IC&&!IC.handing) icEnd(true); },true);
+document.addEventListener("pointerdown",function(e){ if(!icRun||!(e.target.closest&&e.target.closest("#boot"))) return; if(IC&&IC.gate) icEngage(true); },true);
 
 /* ===================== MAIN BOOT: classified channel + signature → orbital globe + uplink → a wave across the globe → the desk ===================== */
 var MG_IC_HTML='<canvas class="iccv"></canvas>'+
@@ -2941,7 +2941,7 @@ function mgWaveDraw(t,c,home){
   g.globalCompositeOperation="source-over";
 }
 function mgEnd(){ if(!OB||OB.ended) return; mgTimers.forEach(function(x){ clearTimeout(x); }); mgTimers=[]; if(IC){ IC.stopped=true; icClear(); if(IC.drone) IC.drone.stop(); } obEnd(true); mgRun=false; }
-function mgSkip(e){ if(!mgRun||!OB||OB.ended) { mgRun=false; return; } if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(OB.gate) mgEngage(true); else if(e.key==="Escape"&&OB.phase!=="unfold") mgEnd(); }
+function mgSkip(e){ if(!mgRun||!OB||OB.ended) { mgRun=false; return; } if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(OB.gate) mgEngage(true); }
 document.addEventListener("keydown",mgSkip,true);
 document.addEventListener("pointerdown",function(e){ if(!mgRun||!(e.target.closest&&e.target.closest("#boot"))) return; mgSkip(e); },true);
 
@@ -2952,7 +2952,7 @@ var CO_HTML='<canvas class="cocv"></canvas>'+
  '<div class="cohud tr"><div data-k="clk">UTC --:--:-- · KST --:--:--</div><div data-k="sid">SESSION ····-····</div></div>'+
  '<div class="cocap" data-k="cap"></div>'+
  '<div class="coph"><span data-k="ph">STANDBY</span><div class="cobar"><i></i></div><b data-k="pc">0%</b></div>'+
- '<div class="coskip">ESC 키로 건너뛰어요</div>';
+ '<div class="coskip"></div>';
 var CO=null, coRun=false, coTimers=[];
 function coMake(){ var o=document.getElementById("boot"); if(o) o.remove(); var b=el("div","boot co"); b.id="boot"; b.innerHTML=CO_HTML; document.body.appendChild(b); return b; }
 function coK(k){ return CO.box.querySelector('[data-k="'+k+'"]'); }
@@ -3076,7 +3076,7 @@ function coEnd(skip){
   if(skip){ if(CO.hum) CO.hum.stop(); sWhoosh(); box.classList.add("hand","off"); assemble(); }
   setTimeout(function(){ if(CO&&CO.raf) cancelAnimationFrame(CO.raf); window.removeEventListener("resize",coResize); box.remove(); CO=null; coRun=false; setTimeout(decodeAll,skip?300:100); },skip?450:80);
 }
-function coSkip(e){ if(!coRun||!CO||CO.ended) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(CO.gate) coEngage(true); else if(e.key==="Escape"&&!CO.landing) coEnd(true); }
+function coSkip(e){ if(!coRun||!CO||CO.ended) return; if(e.type==="keydown"){ e.preventDefault(); e.stopPropagation(); } if(CO.gate) coEngage(true); }
 document.addEventListener("keydown",coSkip,true);
 document.addEventListener("pointerdown",function(e){ if(!coRun||!(e.target.closest&&e.target.closest("#boot"))) return; coSkip(e); },true);
 

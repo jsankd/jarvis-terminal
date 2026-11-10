@@ -1,7 +1,8 @@
 /* JARVIS terminal service worker.
-   - page and data.json: network first, cached copy when offline (so the last brief still opens)
+   - page and data.json: network first, skipping the browser cache (so a new version shows on the next open),
+     cached copy when offline (so the last brief still opens)
    - map, grid library, icons, manifest: cache first */
-const CACHE = "jarvis-v5";
+const CACHE = "jarvis-v6";
 const SHELL = ["./", "index.html", "map.json", "vendor/gridstack-all.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon-64.png"];
 
 self.addEventListener("install", (e) => {
@@ -22,9 +23,10 @@ self.addEventListener("fetch", (e) => {
 
   const fresh = req.mode === "navigate" || url.pathname.endsWith("/data.json") || url.pathname.endsWith("/index.html") || url.pathname.endsWith("/");
   if (fresh) {
-    const netReq = req.mode === "navigate" ? req : new Request(req, { cache: "no-store" });
+    const netReq = req.mode === "navigate" ? new Request(url.href, { cache: "no-cache", credentials: "same-origin" }) : new Request(req, { cache: "no-store" });
     e.respondWith(
       fetch(netReq)
+        .then((res) => (res.redirected && req.mode === "navigate" ? fetch(req) : res))
         .then((res) => {
           if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req.mode === "navigate" ? "index.html" : url.pathname, copy)); }
           return res;
