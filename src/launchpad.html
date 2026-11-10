@@ -891,6 +891,17 @@ td.hl .fchip{margin-right:8px}
 .ob .obnet .nl i u{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--amber);transition:width .25s}
 .ob .obnet .nl em{flex:none;width:22px;text-align:right;font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
 @media (max-width:1180px),(max-height:700px){ .ob .obnet{display:none} }
+.ob .clnet{display:none;flex:none;padding:5px 10px 6px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,167,51,.03);font-size:9.5px;line-height:1.55;color:var(--fg3)}
+.ob .clnet > div{display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;min-width:0}
+.ob .clnet b{flex:none;background:var(--amber);color:#000;padding:0 4px;font-weight:600;letter-spacing:.1em;font-size:8.5px;line-height:1.4}
+.ob .clnet em{flex:none;font-style:normal;color:var(--amber);font-variant-numeric:tabular-nums}
+.ob .clnet canvas{flex:1;min-width:0;height:14px;display:block}
+.ob .clnet .cn2 span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;color:var(--fg2)}
+.ob .clnet .cnw{flex:none;display:flex;gap:3px}
+.ob .clnet .cnw i{width:6px;height:6px;background:#262626}
+.ob .clnet .cnw i.on{background:var(--up);box-shadow:0 0 5px rgba(51,212,115,.8)}
+.ob .clnet .cn3{color:#7a7a7a;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1180px),(max-height:700px){ .ob .clnet{display:block} }
 </style>
 
 <div class="app">
@@ -3406,6 +3417,8 @@ function netStart(t,lines){
   var cv0=box.querySelector(".nspk"), dpr=window.devicePixelRatio||1; cv0.width=Math.round(236*dpr); cv0.height=Math.round(34*dpr);
   N.el=box; N.cv=cv0; N.cg=cv0.getContext("2d"); N.cg.setTransform(dpr,0,0,dpr,0,0); N.wrows=box.querySelectorAll(".nw > div"); N.lrows={};
   Array.prototype.forEach.call(box.querySelectorAll(".nl > div"),function(d){ N.lrows[d.getAttribute("data-c")]=d; });
+  var cs=el("div","clnet"); cs.innerHTML='<div class="cn1"><b>NET</b><em>0 KB/s</em><canvas></canvas></div><div class="cn2"><span>REQ 0 · 2XX 0 · 4XX 0 · RETRY 0</span><span class="cnw">'+new Array(7).join("<i></i>")+'</span></div><div class="cn3">LINK —</div>';
+  OB.cl.el.insertBefore(cs,OB.cl.el.querySelector(".clb")); N.cs=cs; N.csr=cs.querySelector("em"); N.csc=cs.querySelector("canvas"); N.cst=cs.querySelector(".cn2 span"); N.csw=cs.querySelectorAll(".cnw i"); N.csl=cs.querySelector(".cn3");
   OB.net=N;
 }
 function netTick(t,ut){ var N=OB.net; if(!N) return; while(N.qi<N.q.length&&ut>=N.q[N.qi].at) netLaunch(N.q[N.qi++],t,ut); }
@@ -3486,6 +3499,16 @@ function netHud(t,ut){ var N=OB.net, C=OB.cl; if(!N||!N.el) return; var B=N.el;
     var tx=on?s.h:"idle"; if(row._h!==tx){ row._h=tx; row.children[2].textContent=tx; } row.children[3].textContent=on?Math.round(t-s.t)+"ms":""; }
   var cmax=1; NET_LINKS.forEach(function(L){ cmax=Math.max(cmax,N.cab[L[0]]||0); });
   NET_LINKS.forEach(function(L){ var d=N.lrows[L[0]], n=N.cab[L[0]]||0; if(!d) return; d.querySelector("u").style.width=(n/cmax*100).toFixed(0)+"%"; d.querySelector("em").textContent=n; d.classList.toggle("on",n>0); });
+  netStrip(t);
+}
+function netStrip(t){ var N=OB.net, C=OB.cl, cv1=N.csc; if(!N.cs||!cv1||!cv1.clientWidth) return;
+  N.csr.textContent=clKB(N.rate)+"/s"; N.cst.textContent="REQ "+C.req+" · 2XX "+N.c2+" · 4XX "+N.c4+" · RETRY "+N.rt+" · p95 "+netMs(netQ(N.lat,0.95));
+  for(var w=0;w<6;w++){ var on=!!C.wk[w]; if(N.csw[w]&&N.csw[w]._on!==on){ N.csw[w]._on=on; N.csw[w].classList.toggle("on",on); } }
+  var ls=NET_LINKS.map(function(L){ return [L[0],N.cab[L[0]]||0]; }).filter(function(x){ return x[1]>0; }).sort(function(a,b){ return b[1]-a[1]; });
+  N.csl.textContent="LINK "+(ls.length?ls.map(function(x){ return x[0]+" "+x[1]; }).join(" · "):"—");
+  var dpr=window.devicePixelRatio||1, cw=cv1.clientWidth, ch=cv1.clientHeight||14; if(cv1.width!==Math.round(cw*dpr)){ cv1.width=Math.round(cw*dpr); cv1.height=Math.round(ch*dpr); N.csg=cv1.getContext("2d"); N.csg.setTransform(dpr,0,0,dpr,0,0); }
+  var g=N.csg, mx=1; N.hist.forEach(function(v){ if(v>mx) mx=v; }); g.clearRect(0,0,cw,ch); var bw=cw/64;
+  N.hist.forEach(function(v,i){ var h=Math.max(1,(v/mx)*(ch-2)); g.fillStyle=i===N.hist.length-1?"#ffd29a":"rgba(255,167,51,.75)"; g.fillRect(cw-(N.hist.length-i)*bw,ch-h,Math.max(1,bw-1),h); });
 }
 
 mgStart(false);
