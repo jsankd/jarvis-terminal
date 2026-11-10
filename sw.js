@@ -1,7 +1,7 @@
 /* JARVIS terminal service worker.
    - page and data.json: network first, cached copy when offline (so the last brief still opens)
    - map, grid library, icons, manifest: cache first */
-const CACHE = "jarvis-v4";
+const CACHE = "jarvis-v5";
 const SHELL = ["./", "index.html", "map.json", "vendor/gridstack-all.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon-64.png"];
 
 self.addEventListener("install", (e) => {
