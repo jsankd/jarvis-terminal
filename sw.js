@@ -2,7 +2,7 @@
    - page and data.json: network first, skipping the browser cache (so a new version shows on the next open),
      cached copy when offline (so the last brief still opens)
    - map, grid library, icons, manifest: cache first */
-const CACHE = "jarvis-v6";
+const CACHE = "jarvis-v7";
 const SHELL = ["./", "index.html", "map.json", "vendor/gridstack-all.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon-64.png"];
 
 self.addEventListener("install", (e) => {

@@ -875,6 +875,36 @@ td.hl .fchip{margin-right:8px}
   .ob .clx .ck{width:44px}
   .ob .clh{padding:5px 8px} .ob .clb{padding:5px 8px}
 }
+
+/* ===== merged boot: live network telemetry beside the globe ===== */
+.ob .obnet{position:absolute;z-index:3;left:22px;top:156px;width:236px;font:500 9.5px/1.6 var(--f);color:var(--fg3);letter-spacing:.04em;opacity:0;transform:translateX(-18px);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.ob .obnet.on{opacity:1;transform:none}
+.ob.hand .obnet{opacity:0;transition:opacity .3s}
+.ob .obnet .nh{display:flex;align-items:center;gap:8px;padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid rgba(255,167,51,.2)}
+.ob .obnet .nh b{background:var(--amber);color:#000;padding:0 5px;font-weight:600;letter-spacing:.12em}
+.ob .obnet .nh span{color:var(--fg2);letter-spacing:.16em}
+.ob .obnet .nh i{margin-left:auto;font-style:normal;color:var(--amber)}
+.ob .obnet .nr{display:flex;justify-content:space-between}
+.ob .obnet .nr em{font-style:normal;color:var(--amber);font-variant-numeric:tabular-nums}
+.ob .obnet .nspk{display:block;width:236px;height:34px;margin:3px 0 6px}
+.ob .obnet .nc{display:flex;justify-content:space-between;margin-bottom:2px}
+.ob .obnet .nc em{font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
+.ob .obnet .nc .e em{color:var(--dn)}
+.ob .obnet .ns{margin:9px 0 3px;padding-top:7px;border-top:1px solid rgba(255,255,255,.06);font-size:8.5px;letter-spacing:.16em;color:var(--fg3)}
+.ob .obnet .nw > div,.ob .obnet .nl > div{display:flex;align-items:center;gap:7px;white-space:nowrap;min-width:0}
+.ob .obnet .nw b{width:16px;font-weight:500;color:var(--fg3)}
+.ob .obnet .nw i{flex:none;width:6px;height:6px;background:#262626}
+.ob .obnet .nw .on i{background:var(--up);box-shadow:0 0 6px rgba(51,212,115,.8)}
+.ob .obnet .nw span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;color:#4a4a4a}
+.ob .obnet .nw .on span{color:var(--fg2)}
+.ob .obnet .nw em{flex:none;width:44px;text-align:right;font-style:normal;color:var(--fg3);font-variant-numeric:tabular-nums}
+.ob .obnet .nl b{flex:none;width:86px;font-weight:500;color:#5a5a5a;overflow:hidden;text-overflow:ellipsis}
+.ob .obnet .nl .on b{color:var(--fg2)}
+.ob .obnet .nl span{flex:none;width:58px;color:#4a4a4a}
+.ob .obnet .nl i{flex:1;height:4px;position:relative;background:rgba(255,255,255,.06)}
+.ob .obnet .nl i u{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--amber);transition:width .25s}
+.ob .obnet .nl em{flex:none;width:22px;text-align:right;font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
+@media (max-width:1180px),(max-height:700px){ .ob .obnet{display:none} }
 </style>
 
 <style>
@@ -2590,12 +2620,12 @@ function obFrame(t){
   if(OB.phase==="warp"&&el0>2300){ obPhase("lock",t); }
   if(OB.phase==="lock"&&el0>3500){ obPhase("tilt",t); }
   if(OB.phase==="tilt"&&el0>4150&&(D||el0>6500)){ obPhase("uplink",t); OB.upn=0; if(OB.merged&&D){ clStart(t); } else { OB.ev=D?obBuild():[]; OB.box.querySelector(".obup").classList.add("on"); } }
-  var vA=v3(40,8), vL=home, vO=v3(28,60), vU=v3(10,0);
+  var vA=v3(40,8), vL=home, vO=v3(44,50), vU=v3(10,0);
   if(OB.phase==="warp"||OB.phase==="lock"){ var u=Math.min(1,Math.max(0,(el0-300)/3000)), e=1-Math.pow(1-u,3), ua=Math.min(1,Math.max(0,(el0-350)/1950)), ea=1-Math.pow(1-ua,4);
     cam=obCam(obLerpV(vA,vL,e),Rf*(0.025+0.975*ea),cxx,cyy); pc=OB.phase==="warp"?ea*15:15+10*Math.min(1,(t-OB.ph.lock)/1200);
     var alt=Math.round(35786*(1-ea)+420*ea), vel=(3.07+(7.66-3.07)*ea).toFixed(2); obK("alt").textContent=alt.toLocaleString("en-US")+" KM"; obK("vel").textContent=vel+" KM/S"; }
   else if(OB.phase==="tilt"){ var u2=Math.min(1,(t-OB.ph.tilt)/750), e2=ease(u2); cam=obCam(obLerpV(vL,vO,e2),Rf*(1-0.06*e2),cxx,cyy); pc=25+5*e2; }
-  else if(OB.phase==="uplink"){ var dr=v3(28+(t-OB.ph.uplink)*0.0016,60); cam=obCam(dr,Rf*0.94,cxx,cyy); var nf=OB.ev.length?OB.ei/OB.ev.length:1; pc=30+55*nf; OB.lastUp=dr; }
+  else if(OB.phase==="uplink"){ var uu=Math.min(1,(t-OB.ph.uplink)/18000), dr=v3(44+uu*50,50-uu*12); cam=obCam(dr,Rf*0.94,cxx,cyy); var nf=OB.ev.length?OB.ei/OB.ev.length:1; pc=30+55*nf; OB.lastUp=dr; }
   else if(OB.phase==="synth"){ var u3=Math.max(0,Math.min(1,(t-OB.ph.synth-500)/800)), e3=ease(u3); cam=obCam(obLerpV(OB.lastUp||vO,vU,e3),Rf*(0.94+0.06*e3),cxx+(W/2-cxx)*e3,cyy+(H/2-cyy)*e3); pc=85+10*Math.min(1,(t-OB.ph.synth)/1300); gA=1-0.45*Math.sin(Math.PI*Math.min(1,(t-OB.ph.synth)/1300)); }
   else if(OB.phase==="wave"){ var u6=Math.max(0,Math.min(1,(t-OB.ph.wave-300)/1500)), e6=ease(u6); cam=obCam(obLerpV(OB.lastUp||vO,vU,e6),Rf*(0.94+0.06*e6),cxx+(W/2-cxx)*e6,cyy+(H/2-cyy)*e6); pc=85+10*Math.min(1,(t-OB.ph.wave)/1900); }
   else { cam=OB.unfoldCam; pc=95+5*Math.min(1,(t-(OB.ph.unfold||t))/1100); }
@@ -2669,6 +2699,7 @@ function obGlobe(t,c,gA,home){
   /* home lock */
   var hp=obP(home,c,0);
   if((OB.phase==="lock"||OB.phase==="tilt"||OB.phase==="uplink"||OB.phase==="synth")&&hp[2]>0.02) obLock(t,hp);
+  if(OB.net) netDraw(t,c,home);
   /* beams and arcs */
   g.lineCap="round";
   OB.beams.forEach(function(bm){ var age=t-bm.t, gr=Math.min(1,age/280), h=0.16*(1-Math.pow(1-gr,3)), p0=obP(bm.v,c,0), p1=obP(bm.v,c,h), vis=p0[2]>0.02; if(!vis) return;
@@ -3201,7 +3232,7 @@ function clSize(seed,lo,hi){ var h=parseInt(String(fnv(String(seed))).slice(0,6)
 function clKB(kb){ return kb>=1024?(kb/1024).toFixed(2)+" MB":kb>=100?Math.round(kb)+" KB":kb.toFixed(1)+" KB"; }
 function clSz(kb){ return kb>=1024?(kb/1024).toFixed(1)+"M":kb>=100?Math.round(kb)+"K":kb.toFixed(1)+"K"; }
 function clTrim(s,n){ s=String(s||""); return s.length>n?s.slice(0,n-1)+"…":s; }
-function clNode(name,quiet){ var fn=bFeedNode(String(name||"")), c=BNODE[fn.city]||BNODE.NYC; return {src:{v:v3(c[0],c[1]),name:c[2],lon:c[0],lat:c[1]},tag:fn.code,label:c[2],quiet:!!quiet}; }
+function clNode(name,quiet){ var fn=bFeedNode(String(name||"")), cc=BNODE[fn.city]?fn.city:"NYC", c=BNODE[cc]; return {src:{v:v3(c[0],c[1]),name:c[2],lon:c[0],lat:c[1]},tag:fn.code,label:c[2],quiet:!!quiet,city:cc}; }
 function clKcat(s){ var g=arr(s.geo)[0]||"";
   if(g==="KR") return "south_korea"; if(["IR","SA","YE","IL","IQ","AE","QA","LB","SY","JO"].indexOf(g)>=0) return "middle_east"; if(g==="CN"||g==="HK") return "china"; if(g==="JP") return "japan";
   if(["TW","SG","IN","VN","ID","TH","MY","PH"].indexOf(g)>=0) return "asia"; if(["DE","FR","GB","NL","IT","ES","CH","SE","BE","PL","AT","IE","DK","NO","FI"].indexOf(g)>=0) return "europe";
@@ -3210,7 +3241,7 @@ function clBuild(){
   var L=[], evs=[], seenTag={}, feeds=arr(D.feeds).map(String), ds=arr(D.stories), F=(D.fronts||{}), outs=arr(F.outlets);
   function P(at,k,parts,o){ var x={at:at,k:k,parts:parts}; if(o) for(var q in o) x[q]=o[q]; L.push(x); return x; }
   function ev(node){ if(!node) return null; if(seenTag[node.tag]&&!node.story) node.quiet=true; seenTag[node.tag]=1; evs.push(node); return node; }
-  function res(at,method,status,url,kb,ms,node,cls){ return P(at,"res",[["cm",method],["cs "+(cls||(status<300?"ok":status<500?"w":"e")),String(status)],["cu",url],["cz",clSz(kb)],["cl",Math.round(ms)+"ms"]],{req:1,kb:kb,ev:ev(node)}); }
+  function res(at,method,status,url,kb,ms,node,cls,city,w){ return P(at,"res",[["cm",method],["cs "+(cls||(status<300?"ok":status<500?"w":"e")),String(status)],["cu",url],["cz",clSz(kb)],["cl",Math.round(ms)+"ms"]],{req:1,kb:kb,ev:ev(node),code:status,ms:ms,city:city||(node&&node.city)||null,w:w}); }
   function sub(at,key,text,note,cls){ return P(at,"sub",[["ci","↳"],["ck",key],["cx"+(cls?" "+cls:""),text]].concat(note?[["cn",note]]:[])); }
   function ok(at,text,cls){ return P(at,"ok",[["cg","[ok]"],["cx"+(cls?" "+cls:""),text]]); }
   function st(at,stl,fl,fh){ return P(at,"st",null,{stl:stl,fl:fl,fh:fh}); }
@@ -3223,12 +3254,12 @@ function clBuild(){
   ok(t,"resolve "+(Object.keys(hosts).length+2)+" hosts · tls1.3 · keep-alive"); t+=180+Math.random()*120;
   /* A. Kagi index, one file at a time (rate limit) */
   if(feeds.some(function(f){ return /kagi/i.test(f); })){
-    st(t,"FETCH",1,"news.kagi.com"); var l0=clLat(170,.4,90,420); t+=l0;
-    res(t,"GET",200,"news.kagi.com/kite.json",clSize("kite",2.4,4.1),l0,clNode("kagi")); t+=20; sub(t,"index","10 feeds · window 36h");
+    st(t,"FETCH",1,"news.kagi.com"); P(t,"rq",null,{w:0,host:"news.kagi.com/kite.json",city:"PAL"}); var l0=clLat(170,.4,90,420); t+=l0;
+    res(t,"GET",200,"news.kagi.com/kite.json",clSize("kite",2.4,4.1),l0,clNode("kagi"),null,"PAL",0); t+=20; sub(t,"index","10 feeds · window 36h");
     var cats=["business","economy","world","usa","south_korea","asia","china","japan","europe","middle_east"], picks={};
     ds.forEach(function(s,i){ var c=clKcat(s); (picks[c]=picks[c]||[]).push(i); });
-    cats.forEach(function(c){ t+=50+Math.random()*110; st(t,"FETCH",1,"news.kagi.com"); var l1=clLat(240,.5,110,950); if(Math.random()<0.12) l1+=500+Math.random()*500; t+=l1;
-      res(t,"GET",200,"news.kagi.com/"+c+".json",clSize(c,96,470),l1,null);
+    cats.forEach(function(c){ t+=50+Math.random()*110; st(t,"FETCH",1,"news.kagi.com"); P(t,"rq",null,{w:0,host:"news.kagi.com/"+c+".json",city:"PAL"}); var l1=clLat(240,.5,110,950); if(Math.random()<0.12) l1+=500+Math.random()*500; t+=l1;
+      res(t,"GET",200,"news.kagi.com/"+c+".json",clSize(c,96,470),l1,null,null,"PAL",0);
       var pk=picks[c]||[]; if(!pk.length){ t+=14+Math.random()*16; sub(t,"scan","no picks"); }
       pk.forEach(function(i){ var s=ds[i]; t+=14+Math.random()*22; sub(t,"pick","N"+String(i+1).padStart(2,"0")+"  "+clTrim(s.title,26),arr(s.foreign).length+" outlets"); });
       st(t,"FETCH",0,""); });
@@ -3253,6 +3284,7 @@ function clBuild(){
     jobs.push({kind:"te",m:"GET",url:"tradingeconomics.com/"+(cn[r.code]||String(r.code).toLowerCase())+"/government-bond-yield",kb:clSize("te"+r.code,140,230),med:360,sd:.4,node:k===0?clNode("trading economics"):null,
       subs:[[r.code,(arr(R.tenors)[0]||"1Y")+" "+(y[0]!=null?y[0]:"—")+"   10Y "+(y[1]!=null?y[1]:"—")+"   30Y "+(y[2]!=null?y[2]:"—")]]}); });
   var mk=arr(D.mkt); if(mk.length) jobs.push({kind:"quote",m:"GET",url:"quotes · "+mk.length+" symbols",kb:clSize("q",3,9),med:280,sd:.3,node:null,quotes:mk});
+  jobs.forEach(function(j){ j.city=j.node&&j.node.city?j.node.city:netHostCity(j.host||j.url); });
   /* interleave: newsletters first, then a mix */
   var head=jobs.filter(function(j){ return j.kind==="imap"; }), rest=jobs.filter(function(j){ return j.kind!=="imap"; });
   for(var a=rest.length-1;a>0;a--){ var b=Math.floor(Math.random()*(a+1)), x=rest[a]; rest[a]=rest[b]; rest[b]=x; }
@@ -3261,26 +3293,28 @@ function clBuild(){
   var slow=rest.filter(function(j){ return j.kind==="gov"||j.kind==="art"; }); if(slow.length) slow[Math.floor(Math.random()*slow.length)].slow=1;
   function sim(m){ var WK=6, free=[], out=[], q=jobs.map(function(j){ return {j:j,nb:0,att:0}; }), t0=t+60; for(var w=0;w<WK;w++) free.push(t0+w*35);
     while(q.length){ var it=q.shift(), wi=0; for(var w2=1;w2<WK;w2++) if(free[w2]<free[wi]) wi=w2; var s0=Math.max(free[wi],it.nb), lt=clLat(it.j.med*m,it.j.sd,70,2400); if(it.j.slow&&it.att===0) lt=1700+Math.random()*900;
-      var e0=s0+lt, r429=it.j.retry&&it.att===0; out.push({j:it.j,s:s0,e:e0,lt:lt,r429:r429}); free[wi]=e0+8+Math.random()*20;
+      var e0=s0+lt, r429=it.j.retry&&it.att===0; out.push({j:it.j,s:s0,e:e0,lt:lt,r429:r429,w:wi}); free[wi]=e0+8+Math.random()*20;
       if(r429){ var bo=600+Math.random()*400; out[out.length-1].bo=bo; q.splice(Math.min(q.length,3+Math.floor(Math.random()*4)),0,{j:it.j,nb:e0+bo,att:1}); } }
     var end=0; out.forEach(function(o){ end=Math.max(end,o.e); }); return {out:out,end:end,t0:t0}; }
   var m=1, S=sim(m); for(var tries=0;tries<3&&S.end-S.t0>7400;tries++){ m*=7000/(S.end-S.t0); S=sim(m); }
   /* in-flight counter */
   var marks=[]; S.out.forEach(function(o){ marks.push([o.s,1,o]); marks.push([o.e,-1,o]); }); marks.sort(function(p,q){ return p[0]-q[0]||p[1]-q[1]; });
+  S.out.forEach(function(o){ P(o.s,"rq",null,{w:o.w,host:o.j.host?clHP("https://"+o.j.url,40):String(o.j.url),city:o.j.city}); });
   var fl=0, lastHost=""; marks.forEach(function(mm){ fl+=mm[1]; if(mm[1]>0) lastHost=mm[2].j.host||String(mm[2].j.url).split("/")[0]; st(mm[0],"FETCH",fl,lastHost); });
+  var seenH={}, nRoute=0;
   S.out.forEach(function(o){ var j=o.j, tt=o.e;
-    if(o.r429){ P(tt,"warn",[["cm",j.m],["cs w","429"],["cu",j.url],["cz",""],["cl",Math.round(o.lt)+"ms"]],{req:1,kb:0.3}); sub(tt+18,"retry","in "+Math.round(o.bo)+"ms · 1/3",null,"w"); return; }
-    res(tt,j.m,j.status||(j.kind==="imap"?"OK":200),j.url,j.kb,o.lt,j.node?Object.assign({},j.node):null,j.status>=400?"e":"ok");
-    var dt=tt; if(j.quotes){ j.quotes.forEach(function(q){ dt+=12+Math.random()*16; var id=/KOS|KRW/.test(q.sym)?"국내":/BRENT|WTI/.test(q.sym)?"ft":/S&P/.test(q.sym)?"wsj":null; var line=sub(dt,clTrim(q.sym,8),q.last+"  "+q.chg); if(id&&/S&P|KOSPI|BRENT/.test(q.sym)){ var nd=clNode(id); nd.tag="MKT"; nd.label=q.sym; nd.quiet=true; line.ev=ev(nd); } }); return; }
+    if(o.r429){ P(tt,"warn",[["cm",j.m],["cs w","429"],["cu",j.url],["cz",""],["cl",Math.round(o.lt)+"ms"]],{req:1,kb:0.3,code:429,ms:o.lt,city:j.city,w:o.w}); sub(tt+18,"retry","in "+Math.round(o.bo)+"ms · 1/3",null,"w"); return; }
+    res(tt,j.m,j.status||(j.kind==="imap"?"OK":200),j.url,j.kb,o.lt,j.node?Object.assign({},j.node):null,j.status>=400?"e":"ok",j.city,o.w);
+    var dt=tt, hk=j.host||""; if(hk&&!seenH[hk]&&nRoute<10&&j.city&&j.city!=="SEL"){ seenH[hk]=1; var rs=netRouteStr(j.city); if(rs){ nRoute++; dt+=10; sub(dt,"route",rs.s,"~"+rs.ms+"ms"); } } if(j.quotes){ j.quotes.forEach(function(q){ dt+=12+Math.random()*16; var id=/KOS|KRW/.test(q.sym)?"국내":/BRENT|WTI/.test(q.sym)?"ft":/S&P/.test(q.sym)?"wsj":null; var line=sub(dt,clTrim(q.sym,8),q.last+"  "+q.chg); if(id&&/S&P|KOSPI|BRENT/.test(q.sym)){ var nd=clNode(id); nd.tag="MKT"; nd.label=q.sym; nd.quiet=true; line.ev=ev(nd); } }); return; }
     arr(j.subs).forEach(function(sx){ dt+=13+Math.random()*24; sub(dt,sx[0],sx[1],sx[2]); }); });
   /* C. build */
   var tb=Math.max(S.end,L.reduce(function(mx,x){ return Math.max(mx,x.at); },0))+260;
   st(tb,"BUILD",0,"data.json");
   var nFor=0, oset={}; ds.forEach(function(s){ arr(s.foreign).forEach(function(f){ nFor++; if(f.src) oset[f.src]=1; }); });
   ok(tb,"dedupe  "+nFor+" items · "+Object.keys(oset).length+" outlets"); tb+=120+Math.random()*80;
-  ds.forEach(function(s,i){ tb+=110+Math.random()*130; var g=arr(s.geo)[0], ci=A2[g], ll=ci!=null&&MAP.countries[ci]?MAP.countries[ci].ll:null, nd=null;
+  ds.forEach(function(s,i){ tb+=240+Math.random()*120; var g=arr(s.geo)[0], ci=A2[g], ll=ci!=null&&MAP.countries[ci]?MAP.countries[ci].ll:null, nd=null;
     if(ll){ nd={src:{v:v3(ll[0],ll[1]),name:g,lon:ll[0],lat:ll[1]},tag:"N"+(i+1),label:(CODES[s.sector]||"")+" · "+g,story:1}; }
-    P(tb,"story",[["cy","N"+String(i+1).padStart(2,"0")],["cc",(CODES[s.sector]||"")],["cc",String(g||"—")],["cx",clTrim(s.title,26)],["cn","imp "+s.impact+" · "+arr(s.foreign).length+" outlets"]],{ev:nd?ev(nd):null}); });
+    P(tb,"story",[["cy","N"+String(i+1).padStart(2,"0")],["cc",(CODES[s.sector]||"")],["cc",String(g||"—")],["cx",clTrim(s.title,26)],["cn","imp "+s.impact+" · "+arr(s.foreign).length+" outlets"]],{ev:nd?ev(nd):null,imp:+s.impact||5,fc:arr(s.foreign).map(function(f){ return clNode(f.src).city; }).filter(function(c,k,a){ return a.indexOf(c)===k; })}); });
   var th=Object.keys(newsC).map(function(ci){ return MAP.countries[ci]&&MAP.countries[ci].a2; }).filter(Boolean);
   tb+=170; ok(tb,"map     "+th.length+" theaters  "+th.slice(0,10).join(" ")+(th.length>10?" …":""));
   if(outs.length){ var C={}; outs.forEach(function(o){ var sn={}; arr(o.items).forEach(function(it){ (Array.isArray(it.k)?it.k:[it.k]).forEach(function(k){ if(k&&!sn[k]){ sn[k]=1; C[k]=(C[k]||0)+1; } }); }); });
@@ -3296,7 +3330,8 @@ function clStart(t){
   var b=clBuild(); OB.ev=b.evs; OB.ei=0;
   var box=el("div","obcl"); box.innerHTML='<div class="clh"><i></i><i></i><i></i><span>collector.log — jrvs</span><b>6 WORKERS</b></div><div class="clb"><div class="cll"></div></div><div class="clf"><span class="clsp">⠋</span><span class="clst">START</span><em class="clio">0 req · 0.0 KB</em></div>';
   OB.box.appendChild(box); void box.offsetWidth; box.classList.add("on");
-  OB.cl={lines:b.lines,li:0,done:false,doneT:0,req:0,kb:0,fl:0,fh:"",stl:"START",el:box,ll:box.querySelector(".cll"),clb:box.querySelector(".clb"),sp:box.querySelector(".clsp"),stx:box.querySelector(".clst"),io:box.querySelector(".clio"),ft:0,t0:t};
+  OB.cl={lines:b.lines,li:0,done:false,doneT:0,req:0,kb:0,fl:0,fh:"",stl:"START",el:box,ll:box.querySelector(".cll"),clb:box.querySelector(".clb"),sp:box.querySelector(".clsp"),stx:box.querySelector(".clst"),io:box.querySelector(".clio"),ft:0,t0:t,wk:[]};
+  netStart(t,b.lines);
 }
 function clStamp(){ var d=new Date(), s=""; try{ s=d.toLocaleTimeString("en-GB",{timeZone:"Asia/Seoul",hour12:false}); }catch(e){ s=d.toISOString().slice(11,19); } return s+"."+String(d.getMilliseconds()).padStart(3,"0"); }
 function clEmit(Lx){
@@ -3314,14 +3349,176 @@ function clZap(story,pan){ if(!sfxInit()) return; var f=PENTA[(story?4:1)+Math.f
 function clFire(e,t,cam,home){ var p0=obP(e.src.v,cam,0); clZap(e.story,((p0[0]/OB.W)*2-1)*0.7); OB.beams.push({v:e.src.v,t:t,e:e.quiet?null:e});
   var om=Math.acos(Math.max(-1,Math.min(1,e.src.v[0]*home[0]+e.src.v[1]*home[1]+e.src.v[2]*home[2]))); OB.arcs.push({a:e.src.v,b:home,om:om,t:t+150,dur:e.story?760:600,e:e}); OB.ei++; }
 function clTick(t,ut,cam,home){
-  var C=OB.cl; if(!C) return; var n=0;
+  var C=OB.cl; if(!C) return; var n=0; netTick(t,ut);
   while(C.li<C.lines.length&&ut>=C.lines[C.li].at){ var Lx=C.lines[C.li++];
     if(Lx.k==="st"){ C.fl=Lx.fl; if(Lx.fh) C.fh=Lx.fh; C.stl=Lx.stl||C.stl; continue; }
-    clEmit(Lx); n++; if(Lx.req){ C.req++; C.kb+=Lx.kb||0; } if(Lx.ev) clFire(Lx.ev,t,cam,home); if(Lx.done&&!C.done){ C.done=true; C.doneT=t; C.endUt=ut; } }
+    if(Lx.k==="rq"){ netReq(Lx,t); continue; }
+    clEmit(Lx); n++; if(Lx.req){ C.req++; C.kb+=Lx.kb||0; netLine(Lx,t); } if(Lx.ev&&Lx.ev.story){ clFire(Lx.ev,t,cam,home); netCluster(Lx,t); } else if(Lx.ev&&!OB.net) clFire(Lx.ev,t,cam,home); if(Lx.done&&!C.done){ C.done=true; C.doneT=t; C.endUt=ut; } }
   if(n) clClick();
   if(t-C.ft>70){ C.ft=t; C.sp.textContent=C.done?"✓":CL_SPIN.charAt(Math.floor(t/80)%CL_SPIN.length); C.el.classList.toggle("done",C.done);
     C.stx.textContent=C.done?"DONE · data.json ready":C.stl==="FETCH"?(C.fl?"FETCH · "+C.fl+" in flight · "+C.fh:"FETCH · waiting"):C.stl==="BUILD"?"BUILD · data.json":C.stl;
-    C.io.textContent=C.req+" req · "+clKB(C.kb)+" · "+(Math.max(0,(C.done?C.endUt:ut)-120)/1000).toFixed(1)+"s"; }
+    C.io.textContent=C.req+" req · "+clKB(C.kb)+" · "+(Math.max(0,(C.done?C.endUt:ut)-120)/1000).toFixed(1)+"s"; netHud(t,ut); }
+}
+
+
+/* ===================== MERGED BOOT · network layer: cables, hubs, routed packets, source clusters, live telemetry ===================== */
+/* hubs that are not source cities (lon, lat, label). Source cities come from BNODE. */
+var NETH={BUS:[129.04,35.10,"BUSAN"],PDX:[-122.99,45.52,"HILLSBORO"],MRS:[5.37,43.30,"MARSEILLE"],SUZ:[32.55,29.95,"SUEZ"],DJI:[43.15,11.60,"DJIBOUTI"],
+  FJR:[56.33,25.12,"FUJAIRAH"],MUM:[72.83,18.95,"MUMBAI"],FRA:[8.68,50.11,"FRANKFURT"]};
+/* links: [a, b, name, submarine?, waypoints]. Sea routes bend around land through the waypoints. */
+var NETE=[
+  ["SEL","BUS","KR BACKBONE",0,[]],
+  ["BUS","PDX","NCP",1,[]],
+  ["TKY","PDX","FASTER",1,[]],
+  ["TKY","BUS","KJCN",1,[[134.6,33.1],[130.9,33.95]]],
+  ["HKG","BUS","APG",1,[[119.6,24.6],[124.6,31.2]]],
+  ["SIN","HKG","APG",1,[[105.6,2.6],[109.6,10.6],[113.2,18.6]]],
+  ["MUM","SIN","AAE-1",1,[[72.6,10.5],[80.6,5.4],[94.6,6.2],[99.6,3.6]]],
+  ["FJR","MUM","AAE-1",1,[[61.0,22.0]]],
+  ["DOH","FJR","AAE-1",1,[[53.6,26.3],[56.6,26.7]]],
+  ["DJI","FJR","AAE-1",1,[[51.0,13.0],[57.0,17.0],[59.8,22.6]]],
+  ["SUZ","DJI","AAE-1",1,[[36.4,24.0],[40.2,17.0]]],
+  ["MRS","SUZ","AAE-1",1,[[8.8,38.6],[18.5,35.2],[27.0,33.4],[32.3,31.4]]],
+  ["LYS","MRS","EU BACKBONE",0,[]],
+  ["PAR","LYS","EU BACKBONE",0,[]],
+  ["LDN","PAR","EU BACKBONE",0,[]],
+  ["PAR","FRA","EU BACKBONE",0,[]],
+  ["LIS","MRS","EU BACKBONE",0,[[-3.7,40.4],[2.17,41.38]]],
+  ["NYC","LDN","GRACE HOPPER",1,[[-4.54,50.83]]],
+  ["WAS","NYC","US BACKBONE",0,[]],
+  ["NYC","PAL","US BACKBONE",0,[[-87.6,41.9],[-104.99,39.74]]],
+  ["PAL","PDX","US BACKBONE",0,[]]
+];
+var NET_LINKS=[["NCP","PDX→BUS"],["FASTER","PDX→TKY"],["GRACE HOPPER","NYC→LDN"],["AAE-1","MRS→HKG"],["APG","SIN→BUS"],["KJCN","TKY→BUS"]];
+var NET_HOST=[[/kagi/,"PAL"],[/yahoo/,"NYC"],[/tradingeconomics/,"LIS"],[/bls\.gov|house\.gov|senate\.gov|federalreserve|imf\.org|treasury\.gov|sec\.gov|whitehouse/,"WAS"],
+  [/heraldcorp|donga|etoday|yna\.co|hankyung|mk\.co\.kr|chosun|joongang|bok\.or\.kr|\.kr(\/|$)/,"SEL"],[/bloomberg|wsj|nytimes|cnbc|apnews|barrons|semafor|dowjones|quotes/,"NYC"],
+  [/politico|axios/,"WAS"],[/aljazeera/,"DOH"],[/scmp/,"HKG"],[/euronews/,"LYS"],[/afp/,"PAR"],[/guardian|bbc|ft\.com|reuters|economist/,"LDN"],[/nikkei|japantimes/,"TKY"],
+  [/businesstimes|straitstimes/,"SIN"],[/handelsblatt|ecb\.europa/,"FRA"],[/gmail|google/,"PAL"]];
+function netHostCity(h){ h=String(h||"").toLowerCase(); for(var i=0;i<NET_HOST.length;i++) if(NET_HOST[i][0].test(h)) return NET_HOST[i][1]; return "NYC"; }
+function netDot(a,b){ return Math.max(-1,Math.min(1,a[0]*b[0]+a[1]*b[1]+a[2]*b[2])); }
+var NETG=null;
+function netGraph(){ if(NETG) return NETG; var G={nodes:{},edges:[],adj:{},prev:{},route:{}};
+  function cc(id){ return NETH[id]||BNODE[id]; }
+  function nd(id){ if(G.nodes[id]) return G.nodes[id]; var c=cc(id); if(!c) return null; var o={id:id,v:v3(c[0],c[1]),name:c[2],hub:!!NETH[id],fl:-1e9,pop:-1e9}; G.nodes[id]=o; G.adj[id]=[]; return o; }
+  NETE.forEach(function(E){ if(!nd(E[0])||!nd(E[1])) return; var cs=[cc(E[0])].concat(E[4]).concat([cc(E[1])]), vs=cs.map(function(p){ return v3(p[0],p[1]); }), pts=[vs[0]], cum=[0], L=0;
+    for(var k=0;k<vs.length-1;k++){ var A=vs[k], B=vs[k+1], om=Math.acos(netDot(A,B)), n=Math.max(1,Math.ceil(om/0.02));
+      for(var q=1;q<=n;q++){ var p=slerp(A,B,q/n,om), pr=pts[pts.length-1]; L+=Math.acos(netDot(pr,p)); pts.push(p); cum.push(L); } }
+    var e={a:E[0],b:E[1],name:E[2],sub:E[3],pts:pts,cum:cum,len:L,km:L*6371,w:L*(E[2]==="GRACE HOPPER"?1.7:1),heat:0};
+    G.edges.push(e); G.adj[E[0]].push(e); G.adj[E[1]].push(e); });
+  /* shortest path from every node to Seoul (the Atlantic is weighted so Europe goes east, through Suez) */
+  var dist={}, done={}; Object.keys(G.nodes).forEach(function(k){ dist[k]=Infinity; }); dist.SEL=0;
+  for(;;){ var u=null; Object.keys(G.nodes).forEach(function(k){ if(!done[k]&&dist[k]<Infinity&&(u===null||dist[k]<dist[u])) u=k; }); if(u===null) break; done[u]=1;
+    G.adj[u].forEach(function(e){ var w=e.a===u?e.b:e.a, d=dist[u]+e.w; if(d<dist[w]){ dist[w]=d; G.prev[w]={n:u,e:e}; } }); }
+  NETG=G; return G; }
+function netRoute(id){ var G=netGraph(); if(id in G.route) return G.route[id]; if(!id||id==="SEL"||!G.prev[id]){ G.route[id]=null; return null; }
+  var legs=[], cur=id, pts=[], cum=[], hops=[], L=0; while(cur!=="SEL"){ var pv=G.prev[cur]; legs.push({e:pv.e,from:cur,to:pv.n}); cur=pv.n; }
+  legs.forEach(function(lg){ var e=lg.e, fwd=e.a===lg.from, n=e.pts.length;
+    for(var k=0;k<n;k++){ var ix=fwd?k:n-1-k; if(k===0&&pts.length) continue; if(pts.length) L+=fwd?e.cum[ix]-e.cum[ix-1]:e.cum[ix+1]-e.cum[ix]; pts.push(e.pts[ix]); cum.push(L); }
+    hops.push({s:L,node:lg.to,e:e}); });
+  var r={pts:pts,cum:cum,len:L,hops:hops,legs:legs,km:L*6371}; G.route[id]=r; return r; }
+/* "LDN › PAR › LYS › MRS ═AAE-1═ SIN ═APG═ BUS › SEL" and the one-way fibre time (about 1 ms per 200 km) */
+function netRouteStr(id){ var r=netRoute(id); if(!r) return null; var s=id, i=0, L=r.legs;
+  while(i<L.length){ var e=L[i].e; if(e.sub){ var j=i; while(j+1<L.length&&L[j+1].e.sub&&L[j+1].e.name===e.name) j++; s+=" ═"+e.name+"═ "+L[j].to; i=j+1; } else { s+=" › "+L[i].to; i++; } }
+  return {s:s,ms:Math.round(r.km/200)}; }
+/* ---------- per run ---------- */
+function netStart(t,lines){
+  var G=netGraph(); G.edges.forEach(function(e){ e.heat=0; }); Object.keys(G.nodes).forEach(function(k){ G.nodes[k].fl=-1e9; G.nodes[k].pop=-1e9; });
+  var N={pk:[],q:[],qi:0,links:[],sn:[],pops:[],c2:0,c4:0,rt:0,lat:[],hist:[],rate:0,lastKb:0,lastS:t,cab:{},lt:0};
+  lines.forEach(function(Lx){ if(!Lx.req||!Lx.city) return; var r=netRoute(Lx.city), T=r?Math.max(650,Math.min(1650,520+r.len*380)):420, kind=Lx.code===429?"warn":(+Lx.code>=400?"err":"res"),
+      n=kind==="res"?1+Math.min(3,Math.floor((Lx.kb||0)/110)):1;
+    for(var k=0;k<n;k++) N.q.push({at:Lx.at-T+k*46,arr:Lx.at+k*46,city:Lx.city,kind:kind,ev:k===0?Lx.ev:null,snd:k===0}); });
+  N.q.sort(function(a,b){ return a.at-b.at; });
+  var box=el("div","obnet"), lk=NET_LINKS.map(function(L){ return '<div data-c="'+L[0]+'"><b>'+L[0]+'</b><span>'+L[1]+'</span><i><u></u></i><em>0</em></div>'; }).join(""), wk="";
+  for(var w=0;w<6;w++) wk+='<div><b>W'+(w+1)+'</b><i></i><span>idle</span><em></em></div>';
+  box.innerHTML='<div class="nh"><b>NET</b><span>LIVE TELEMETRY</span><i>⠋</i></div>'+
+    '<div class="nr"><span>THROUGHPUT</span><em data-n="rate">0 KB/s</em></div><canvas class="nspk"></canvas>'+
+    '<div class="nc"><span>REQ <em data-n="req">0</em></span><span>2XX <em data-n="ok">0</em></span><span class="e">4XX <em data-n="er">0</em></span><span>RETRY <em data-n="rt">0</em></span></div>'+
+    '<div class="nr"><span>LATENCY</span><em data-n="lat">p50 — · p95 —</em></div>'+
+    '<div class="ns">WORKERS</div><div class="nw">'+wk+'</div><div class="ns">SUBSEA LINKS · TO SEOUL</div><div class="nl">'+lk+'</div>';
+  OB.box.appendChild(box); void box.offsetWidth; box.classList.add("on");
+  var cv0=box.querySelector(".nspk"), dpr=window.devicePixelRatio||1; cv0.width=Math.round(236*dpr); cv0.height=Math.round(34*dpr);
+  N.el=box; N.cv=cv0; N.cg=cv0.getContext("2d"); N.cg.setTransform(dpr,0,0,dpr,0,0); N.wrows=box.querySelectorAll(".nw > div"); N.lrows={};
+  Array.prototype.forEach.call(box.querySelectorAll(".nl > div"),function(d){ N.lrows[d.getAttribute("data-c")]=d; });
+  OB.net=N;
+}
+function netTick(t,ut){ var N=OB.net; if(!N) return; while(N.qi<N.q.length&&ut>=N.q[N.qi].at) netLaunch(N.q[N.qi++],t,ut); }
+function netLaunch(Q,t,ut){ var N=OB.net, r=netRoute(Q.city);
+  if(Q.ev){ var e=Q.ev; OB.beams.push({v:e.src.v,t:t,e:e.quiet?null:e}); var p0=OB.cam?obP(e.src.v,OB.cam,0):[OB.W/2]; clZap(false,((p0[0]/OB.W)*2-1)*0.7); OB.ei++; }
+  N.pk.push({r:r,t0:t,T:Math.max(240,Q.arr-ut),out:0,k:Q.kind,hi:0,snd:Q.snd,seen:{}}); }
+function netReq(Lx,t){ var N=OB.net, C=OB.cl; if(!N) return; if(Lx.w!=null) C.wk[Lx.w]={h:Lx.host||"",t:t};
+  var r=netRoute(Lx.city); if(r) N.pk.push({r:r,t0:t,T:Math.max(320,Math.min(820,260+r.len*190)),out:1,k:"req",hi:0,seen:{}}); }
+function netLine(Lx,t){ var N=OB.net, C=OB.cl; if(!N) return; var c=Lx.code;
+  if(c===429){ N.c4++; N.rt++; } else if(+c>=400) N.c4++; else if(c!=null) N.c2++;
+  if(Lx.ms) N.lat.push(Lx.ms); if(Lx.w!=null) C.wk[Lx.w]=null; }
+function netCluster(Lx,t){ var N=OB.net; if(!N||!Lx.ev) return; var sv=Lx.ev.src.v;
+  arr(Lx.fc).forEach(function(cid,k){ var cn=BNODE[cid]; if(!cn) return; var a=v3(cn[0],cn[1]), om=Math.acos(netDot(a,sv)); if(om<0.02) return; N.links.push({a:a,b:sv,om:om,t:t+k*70}); });
+  N.sn.push({v:sv,t:t,imp:Lx.imp||5,tag:Lx.ev.tag}); }
+function netHop(h,t,P0){ var N=OB.net, G=netGraph(), nd=G.nodes[h.node]; h.e.heat+=P0.k==="res"?1:0.6;
+  if(h.e.sub&&!P0.seen[h.e.name]){ P0.seen[h.e.name]=1; N.cab[h.e.name]=(N.cab[h.e.name]||0)+1; }
+  if(nd&&h.node!=="SEL"){ nd.fl=t; if(!OB.narrow&&t-nd.pop>150){ nd.pop=t; N.pops.push({v:nd.v,t:t,txt:"+"+Math.max(1,Math.round(h.e.km/200))+"ms"}); } } }
+function netArrive(P0,t){ var G=netGraph();
+  if(P0.out){ var r=P0.r; if(r&&r.legs.length){ var nd=G.nodes[r.legs[0].from]; if(nd) nd.fl=t-250; } return; }
+  OB.hits++; OB.rings.push({t:t}); if(P0.snd&&OB.cam){ var hp=obP(v3(SEOUL[0],SEOUL[1]),OB.cam,0); sTick(((hp[0]/OB.W)*2-1)*0.6); } }
+function netPos(r,s){ var lo=0, hi=r.cum.length-1; if(s<=0) return r.pts[0]; if(s>=r.len) return r.pts[hi];
+  while(hi-lo>1){ var m=(lo+hi)>>1; if(r.cum[m]<=s) lo=m; else hi=m; } var a=r.pts[lo], b=r.pts[hi], sg=r.cum[hi]-r.cum[lo], f=sg>0?(s-r.cum[lo])/sg:0;
+  return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f]; }
+var NET_COL={res:"255,178,92",warn:"255,138,58",err:"255,84,72",req:"190,200,220"};
+function netPacket(r,s,P0,c,H,fa){ var g=OB.g, tl=Math.min(r.len*0.3,P0.out?0.1:0.2), tail=P0.out?Math.min(r.len,s+tl):Math.max(0,s-tl), K=8, pts=[];
+  for(var k=0;k<=K;k++) pts.push(obP(netPos(r,tail+(s-tail)*k/K),c,H));
+  var col=NET_COL[P0.k]||NET_COL.res, hd=pts[K];
+  if(P0.k!=="req"){ g.strokeStyle="rgba("+col+","+(0.13*fa).toFixed(3)+")"; g.lineWidth=3.6; obPath(pts); }
+  g.strokeStyle="rgba("+col+","+((P0.k==="req"?0.32:0.72)*fa).toFixed(3)+")"; g.lineWidth=P0.k==="req"?0.9:1.3; obPath(pts);
+  if(hd[2]>0||hd[3]>1){ var rr=P0.k==="req"?1.1:1.9; g.fillStyle=P0.k==="req"?"rgba(220,226,240,"+(0.6*fa).toFixed(3)+")":"rgba(255,244,226,"+fa.toFixed(3)+")"; g.fillRect(hd[0]-rr,hd[1]-rr,rr*2,rr*2); } }
+function netDraw(t,c,home){ var N=OB.net; if(!N) return; var G=netGraph(), g=OB.g, H=0.006; if(c.R<40) return;
+  var dt=N.lt?Math.min(60,t-N.lt):16; N.lt=t; var dec=Math.exp(-dt/5200), fa=OB.phase==="wave"?Math.max(0.3,1-(t-OB.ph.wave)/1600):1, narrow=OB.narrow;
+  g.save(); g.lineCap="round"; g.lineJoin="round";
+  /* cables: faint base, glowing where traffic has passed */
+  G.edges.forEach(function(e){ e.heat*=dec; var P=new Array(e.pts.length); for(var k=0;k<e.pts.length;k++) P[k]=obP(e.pts[k],c,H); e.P=P;
+    if(e.sub){ g.strokeStyle="rgba(255,167,51,"+(0.14*fa).toFixed(3)+")"; g.lineWidth=0.9; obPath(P); }
+    else { g.setLineDash([2,3]); g.strokeStyle="rgba(190,190,190,"+(0.1*fa).toFixed(3)+")"; g.lineWidth=0.7; obPath(P); g.setLineDash([]); } });
+  g.globalCompositeOperation="lighter";
+  G.edges.forEach(function(e){ if(e.heat<0.04) return; var hv=Math.min(1,e.heat/6); g.strokeStyle="rgba(255,165,70,"+((0.06+0.34*hv)*fa).toFixed(3)+")"; g.lineWidth=1+2.4*hv; obPath(e.P); });
+  /* sources converging on each story's country */
+  N.links.forEach(function(l){ var u=(t-l.t)/480; if(u<=0) return; var e1=u<1?1-Math.pow(1-u,2):1, Hh=0.02+l.om*0.09, M=28, pts=[];
+    for(var k=0;k<=M;k++){ var s=e1*k/M; pts.push(obP(slerp(l.a,l.b,s,l.om),c,Math.sin(Math.PI*s)*Hh+0.004)); }
+    var al=u<1?0.75:Math.max(0.2,0.75-(t-l.t-480)/1600*0.55); g.strokeStyle="rgba(255,214,160,"+(al*fa).toFixed(3)+")"; g.lineWidth=1; obPath(pts);
+    if(u<1){ var hd=pts[M]; if(hd[2]>0||hd[3]>1){ g.fillStyle="rgba(255,246,230,"+fa.toFixed(3)+")"; g.fillRect(hd[0]-1.5,hd[1]-1.5,3,3); } } });
+  /* packets: dim requests going out, bright responses coming home */
+  N.pk=N.pk.filter(function(P0){ var u=(t-P0.t0)/P0.T; if(u<0) return true; if(u>=1){ netArrive(P0,t); return false; } if(!P0.r) return true;
+    var r=P0.r, s=(P0.out?1-u:u)*r.len; if(!P0.out){ while(P0.hi<r.hops.length&&s>=r.hops[P0.hi].s){ netHop(r.hops[P0.hi],t,P0); P0.hi++; } }
+    netPacket(r,s,P0,c,H,fa); return true; });
+  /* story markers */
+  N.sn.forEach(function(sn){ var age=t-sn.t, p=obP(sn.v,c,0.004); if(p[2]<0.02) return; var k=Math.min(1,age/400), sz=(3+sn.imp*0.45)*k, pu=0.5+0.5*Math.sin(age/180);
+    g.strokeStyle="rgba(255,226,180,"+((0.55+0.35*pu)*fa).toFixed(3)+")"; g.lineWidth=1.1; g.beginPath(); g.moveTo(p[0],p[1]-sz); g.lineTo(p[0]+sz,p[1]); g.lineTo(p[0],p[1]+sz); g.lineTo(p[0]-sz,p[1]); g.closePath(); g.stroke();
+    if(age<900){ var rp=age/900; g.strokeStyle="rgba(255,214,160,"+(0.8*(1-rp)*fa).toFixed(3)+")"; g.beginPath(); g.arc(p[0],p[1],sz+rp*22,0,Math.PI*2); g.stroke(); } });
+  g.globalCompositeOperation="source-over";
+  /* hubs and source cities */
+  g.font="500 8px 'IBM Plex Mono',monospace"; g.textBaseline="middle"; g.textAlign="left";
+  Object.keys(G.nodes).forEach(function(id){ if(id==="SEL") return; var n=G.nodes[id], p=obP(n.v,c,H); if(p[2]<0.03) return; var f=Math.max(0,1-(t-n.fl)/650);
+    if(n.hub){ g.strokeStyle="rgba(255,190,120,"+((0.3+0.6*f)*fa).toFixed(3)+")"; g.lineWidth=0.8; g.strokeRect(p[0]-3.5,p[1]-3.5,7,7); g.fillStyle="rgba(255,214,170,"+((0.45+0.55*f)*fa).toFixed(3)+")"; g.fillRect(p[0]-1.2,p[1]-1.2,2.4,2.4);
+      if(!narrow){ g.fillStyle="rgba(200,190,176,"+((0.36+0.5*f)*fa).toFixed(3)+")"; g.fillText(n.name,p[0]+7,p[1]); } }
+    else if(f>0){ g.fillStyle="rgba(255,200,140,"+(0.8*f*fa).toFixed(3)+")"; g.fillRect(p[0]-1.5,p[1]-1.5,3,3); }
+    if(f>0){ g.strokeStyle="rgba(255,220,170,"+(0.7*f*fa).toFixed(3)+")"; g.lineWidth=1; g.beginPath(); g.arc(p[0],p[1],4+(1-f)*10,0,Math.PI*2); g.stroke(); } });
+  /* cable names where traffic is heavy, and hop delays as packets pass a hub */
+  if(!narrow){ g.font="italic 500 8.5px 'IBM Plex Mono',monospace"; g.textAlign="center"; g.textBaseline="bottom";
+    G.edges.forEach(function(e){ if(!e.sub||e.heat<1.1||!e.P) return; var mid=e.P[Math.floor(e.P.length/2)]; if(mid[2]<0.08) return; g.fillStyle="rgba(255,196,130,"+(Math.min(0.8,(e.heat-1.1)*0.3)*fa).toFixed(3)+")"; g.fillText(e.name,mid[0],mid[1]-5); });
+    g.font="500 8.5px 'IBM Plex Mono',monospace"; g.textAlign="left";
+    N.pops=N.pops.filter(function(o){ var age=t-o.t; if(age>800) return false; var p=obP(o.v,c,H); if(p[2]<0.03) return true; g.fillStyle="rgba(255,226,180,"+(0.85*(1-age/800)*fa).toFixed(3)+")"; g.fillText(o.txt,p[0]+7,p[1]-8-age/80); return true; }); }
+  g.restore(); }
+function netQ(a,q){ if(!a.length) return null; var s=a.slice().sort(function(x,y){ return x-y; }); return s[Math.min(s.length-1,Math.floor(q*(s.length-1)+0.5))]; }
+function netMs(v){ return v==null?"—":v>=1000?(v/1000).toFixed(2)+"s":Math.round(v)+"ms"; }
+function netHud(t,ut){ var N=OB.net, C=OB.cl; if(!N||!N.el) return; var B=N.el;
+  var dt=(t-N.lastS)/1000; if(dt>0.09){ var rate=Math.max(0,(C.kb-N.lastKb)/dt); N.lastKb=C.kb; N.lastS=t; N.rate+=(rate-N.rate)*0.35; N.hist.push(N.rate); if(N.hist.length>64) N.hist.shift(); }
+  B.querySelector(".nh i").textContent=C.done?"✓":CL_SPIN.charAt(Math.floor(t/80)%CL_SPIN.length);
+  B.querySelector('[data-n="rate"]').textContent=clKB(N.rate)+"/s";
+  B.querySelector('[data-n="req"]').textContent=C.req; B.querySelector('[data-n="ok"]').textContent=N.c2; B.querySelector('[data-n="er"]').textContent=N.c4; B.querySelector('[data-n="rt"]').textContent=N.rt;
+  B.querySelector('[data-n="lat"]').textContent="p50 "+netMs(netQ(N.lat,0.5))+" · p95 "+netMs(netQ(N.lat,0.95));
+  var g=N.cg, W=236, Hh=34, mx=1; N.hist.forEach(function(v){ if(v>mx) mx=v; }); g.clearRect(0,0,W,Hh); g.fillStyle="rgba(255,255,255,.04)"; g.fillRect(0,Hh-1,W,1);
+  var bw=W/64; N.hist.forEach(function(v,i){ var h=Math.max(1,(v/mx)*(Hh-3)); g.fillStyle=i===N.hist.length-1?"#ffd29a":"rgba(255,167,51,.75)"; g.fillRect(W-(N.hist.length-i)*bw,Hh-h,Math.max(1,bw-1),h); });
+  for(var w=0;w<6;w++){ var row=N.wrows[w], s=C.wk[w]; if(!row) continue; var on=!!s; if(row._on!==on){ row._on=on; row.classList.toggle("on",on); }
+    var tx=on?s.h:"idle"; if(row._h!==tx){ row._h=tx; row.children[2].textContent=tx; } row.children[3].textContent=on?Math.round(t-s.t)+"ms":""; }
+  var cmax=1; NET_LINKS.forEach(function(L){ cmax=Math.max(cmax,N.cab[L[0]]||0); });
+  NET_LINKS.forEach(function(L){ var d=N.lrows[L[0]], n=N.cab[L[0]]||0; if(!d) return; d.querySelector("u").style.width=(n/cmax*100).toFixed(0)+"%"; d.querySelector("em").textContent=n; d.classList.toggle("on",n>0); });
 }
 
 mgStart(false);
